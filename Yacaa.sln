@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa", "Yacaa\Yacaa.csproj", "{5727D26F-415B-46CC-B2EE-B65D1AC8E448}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{7AC6388F-A7F2-4BCD-A3C6-9F7D979AFEAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{FF052B5C-32CB-43AE-A6AF-4DB98DC092E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa.Services.DataAccess", "Services\Yacaa.Services.DataAccess\Yacaa.Services.DataAccess.csproj", "{76ABDCD3-5CEA-4EB8-82EA-2DE7809B7F6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa.Services.Settings", "Services\Yacaa.Services.Settings\Yacaa.Services.Settings.csproj", "{618A4222-A7B0-4A40-88CF-C256CE5953D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa.Modules.Accounting", "Modules\Yacaa.Modules.Accounting\Yacaa.Modules.Accounting.csproj", "{2E3D02A3-2CDD-453B-BEB9-1BF32B505557}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa.Modules.Analytics", "Modules\Yacaa.Modules.Analytics\Yacaa.Modules.Analytics.csproj", "{D2EF8FE8-F165-4FB9-BDDA-34806B5962E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5727D26F-415B-46CC-B2EE-B65D1AC8E448}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5727D26F-415B-46CC-B2EE-B65D1AC8E448}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5727D26F-415B-46CC-B2EE-B65D1AC8E448}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5727D26F-415B-46CC-B2EE-B65D1AC8E448}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76ABDCD3-5CEA-4EB8-82EA-2DE7809B7F6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76ABDCD3-5CEA-4EB8-82EA-2DE7809B7F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76ABDCD3-5CEA-4EB8-82EA-2DE7809B7F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76ABDCD3-5CEA-4EB8-82EA-2DE7809B7F6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{618A4222-A7B0-4A40-88CF-C256CE5953D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{618A4222-A7B0-4A40-88CF-C256CE5953D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{618A4222-A7B0-4A40-88CF-C256CE5953D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{618A4222-A7B0-4A40-88CF-C256CE5953D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E3D02A3-2CDD-453B-BEB9-1BF32B505557}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E3D02A3-2CDD-453B-BEB9-1BF32B505557}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E3D02A3-2CDD-453B-BEB9-1BF32B505557}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E3D02A3-2CDD-453B-BEB9-1BF32B505557}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2EF8FE8-F165-4FB9-BDDA-34806B5962E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2EF8FE8-F165-4FB9-BDDA-34806B5962E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2EF8FE8-F165-4FB9-BDDA-34806B5962E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2EF8FE8-F165-4FB9-BDDA-34806B5962E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{76ABDCD3-5CEA-4EB8-82EA-2DE7809B7F6B} = {FF052B5C-32CB-43AE-A6AF-4DB98DC092E9}
+		{618A4222-A7B0-4A40-88CF-C256CE5953D4} = {FF052B5C-32CB-43AE-A6AF-4DB98DC092E9}
+		{2E3D02A3-2CDD-453B-BEB9-1BF32B505557} = {7AC6388F-A7F2-4BCD-A3C6-9F7D979AFEAA}
+		{D2EF8FE8-F165-4FB9-BDDA-34806B5962E5} = {7AC6388F-A7F2-4BCD-A3C6-9F7D979AFEAA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FFBD674F-E220-4F2D-A390-090A387C4BCA}
+	EndGlobalSection
+EndGlobal
