@@ -1,18 +1,34 @@
-﻿using Prism.Mvvm;
+﻿using System.Collections.Generic;
+using Prism.Mvvm;
 using System.Collections.ObjectModel;
+using Prism.Events;
 using Yacaa.Shared.Navigation;
 using Yacaa.Shared.ViewModels;
+using Prism.Commands;
+using Yacaa.Shared.Commands;
 
 namespace Yacaa.Modules.Accounting.Menu
 {
     public class PartnerInteractionViewModel : BaseViewModel
     {
+        private readonly IApplicationCommands _applicationCommands;
         public ObservableCollection<ExpanderItem> ExpanderItems { get; }
         public NavigationItem SelectedItem { get; set; }
+        private DelegateCommand<object> _selectedCommand;
 
-        public PartnerInteractionViewModel()
+        public PartnerInteractionViewModel(IEventAggregator ea, IApplicationCommands applicationCommands) : base(ea)
         {
+            _applicationCommands = applicationCommands;
             ExpanderItems = GenerateItems();
+        }
+        
+        public DelegateCommand<object> SelectedCommand =>
+            _selectedCommand ??= new DelegateCommand<object>(ExecuteSelectedCommand);
+
+        void ExecuteSelectedCommand(object o)
+        {
+            if (o is NavigationItem n)
+                _applicationCommands.NavigateCommand.Execute(n.NavigationPath);
         }
 
         private static ObservableCollection<ExpanderItem> GenerateItems()

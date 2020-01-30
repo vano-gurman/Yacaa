@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace Yacaa.Modules.Accounting.Menu
+﻿namespace Yacaa.Modules.Accounting.Menu
 {
     /// <summary>
     /// Interaction logic for PartnerInteraction

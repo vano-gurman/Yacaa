@@ -9,6 +9,7 @@ using Yacaa.Modules.Accounting;
 using Yacaa.Modules.Analytics;
 using Yacaa.Modules.Login;
 using Yacaa.RegionAdapters;
+using Yacaa.Shared.Commands;
 using Yacaa.ViewModels;
 
 namespace Yacaa
@@ -26,6 +27,7 @@ namespace Yacaa
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             //ViewModelLocationProvider.Register<MainWindow, MainWindowViewModel>();
+            containerRegistry.RegisterSingleton<IApplicationCommands, ApplicationCommands>();
         }
         
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

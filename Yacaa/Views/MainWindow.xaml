@@ -19,7 +19,7 @@
     <styles:MaterialDesignWindow.HeaderContent>
         <Grid>
             <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" HorizontalAlignment="Left" WindowChrome.IsHitTestVisibleInChrome="True" 
-                          x:Name="MenuToggleButton" />
+                          x:Name="MenuToggleButton" IsChecked="{Binding IsMenuOpen, Mode=TwoWay}" />
             <TextBlock Text="{Binding Title, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
         </Grid>
     </styles:MaterialDesignWindow.HeaderContent>

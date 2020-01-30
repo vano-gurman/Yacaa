@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:shared="clr-namespace:Yacaa.Shared.Navigation;assembly=Yacaa.Shared"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              ItemsSource="{Binding ExpanderItems}">
 
     <ItemsControl.Resources>
@@ -14,10 +13,18 @@
         <DataTemplate>
             <Expander Header="{Binding Caption}" HorizontalAlignment="Stretch">
                 <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="20,4,20,8">
-                    <ListBox SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding NavigationItems}">
-                        <ListBox.Resources>
-                            <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
-                        </ListBox.Resources>
+                    <ListBox ItemsSource="{Binding NavigationItems}"
+                             SelectedItem="{Binding Path=DataContext.SelectedItem,
+                             RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <prism:InvokeCommandAction 
+                                    Command="{Binding RelativeSource={RelativeSource AncestorLevel=2,
+                                    Mode=FindAncestor, AncestorType={x:Type ItemsControl}},
+                                    Path=DataContext.SelectedCommand}"
+                                    TriggerParameterPath="AddedItems"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Caption}" />
