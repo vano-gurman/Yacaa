@@ -1,19 +1,13 @@
-﻿using Prism.Mvvm;
+﻿using System;
+using Yacaa.Shared.ViewModels;
 
 namespace Yacaa.ViewModels
 {
-    public class MainWindowViewModel : BindableBase
+    public class MainWindowViewModel : BaseViewModel
     {
-        private string _title = "Prism Application";
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
-
         public MainWindowViewModel()
         {
-
+            Title = "Prism appX";
         }
     }
 }

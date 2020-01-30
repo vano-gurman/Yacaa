@@ -2,9 +2,14 @@
 using Prism.Ioc;
 using Prism.Modularity;
 using System.Windows;
+using System.Windows.Controls;
+using Prism.Mvvm;
+using Prism.Regions;
 using Yacaa.Modules.Accounting;
 using Yacaa.Modules.Analytics;
 using Yacaa.Modules.Login;
+using Yacaa.RegionAdapters;
+using Yacaa.ViewModels;
 
 namespace Yacaa
 {
@@ -20,7 +25,7 @@ namespace Yacaa
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
+            //ViewModelLocationProvider.Register<MainWindow, MainWindowViewModel>();
         }
         
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
@@ -28,6 +33,12 @@ namespace Yacaa
             moduleCatalog.AddModule<AccountingModule>();
             moduleCatalog.AddModule<AnalyticsModule>();
             moduleCatalog.AddModule<LoginModule>();
+        }
+
+        protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
+        {
+            base.ConfigureRegionAdapterMappings(regionAdapterMappings);
+            regionAdapterMappings.RegisterMapping(typeof(StackPanel), Container.Resolve<StackpanelRegionAdapter>());
         }
     }
 }

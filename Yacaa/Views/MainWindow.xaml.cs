@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Yacaa.Styles;
 
 namespace Yacaa.Views
 {
@@ -9,6 +10,7 @@ namespace Yacaa.Views
     {
         public MainWindow()
         {
+            MaterialDesignWindow.RegisterCommands(this);
             InitializeComponent();
         }
     }
