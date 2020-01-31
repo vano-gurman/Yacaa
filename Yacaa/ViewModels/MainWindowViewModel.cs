@@ -17,7 +17,7 @@ namespace Yacaa.ViewModels
         protected MainWindowViewModel(IEventAggregator ea, IRegionManager regionManager, IApplicationCommands applicationCommands) : base(ea)
         {
             _regionManager = regionManager;
-            applicationCommands.NavigateCommand?.RegisterCommand(NavigateCommand);
+            applicationCommands.NavigateCommand.RegisterCommand(NavigateCommand);
         }
         
         public DelegateCommand<string> NavigateCommand =>

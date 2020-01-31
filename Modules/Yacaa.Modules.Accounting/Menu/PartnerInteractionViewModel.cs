@@ -14,7 +14,7 @@ namespace Yacaa.Modules.Accounting.Menu
         private readonly IApplicationCommands _applicationCommands;
         public ObservableCollection<ExpanderItem> ExpanderItems { get; }
         public NavigationItem SelectedItem { get; set; }
-        private DelegateCommand<object> _selectedCommand;
+        private DelegateCommand<object[]> _selectedCommand;
 
         public PartnerInteractionViewModel(IEventAggregator ea, IApplicationCommands applicationCommands) : base(ea)
         {
@@ -22,13 +22,15 @@ namespace Yacaa.Modules.Accounting.Menu
             ExpanderItems = GenerateItems();
         }
         
-        public DelegateCommand<object> SelectedCommand =>
-            _selectedCommand ??= new DelegateCommand<object>(ExecuteSelectedCommand);
+        public DelegateCommand<object[]> SelectedCommand =>
+            _selectedCommand ??= new DelegateCommand<object[]>(ExecuteSelectedCommand);
 
-        void ExecuteSelectedCommand(object o)
+        void ExecuteSelectedCommand(object[] o)
         {
-            if (o is NavigationItem n)
-                _applicationCommands.NavigateCommand.Execute(n.NavigationPath);
+            if (o[0] is NavigationItem item)
+            {
+                _applicationCommands.NavigateCommand.Execute(item.NavigationPath);
+            } 
         }
 
         private static ObservableCollection<ExpanderItem> GenerateItems()
