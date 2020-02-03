@@ -1,9 +1,0 @@
-﻿<UserControl x:Class="Yacaa.Modules.Accounting.Views.RequestAdmission"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:prism="http://prismlibrary.com/"             
-             prism:ViewModelLocator.AutoWireViewModel="True">
-    <Grid>
-        <TextBlock Text="Заявки на поступление"/>
-    </Grid>
-</UserControl>

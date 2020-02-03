@@ -51,9 +51,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountingModule.cs" />
+    <Compile Include="Menu\Sales.xaml.cs">
+      <DependentUpon>Sales.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Menu\PartnerInteraction.xaml.cs">
       <DependentUpon>PartnerInteraction.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Menu\SalesViewModel.cs" />
     <Compile Include="Menu\PartnerInteractionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -68,25 +72,33 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ViewModels\AgreementsViewModel.cs" />
-    <Compile Include="ViewModels\ContractsViewModel.cs" />
-    <Compile Include="ViewModels\RequestAdmissionViewModel.cs" />
-    <Compile Include="ViewModels\RequestRelocationViewModel.cs" />
-    <Compile Include="ViewModels\RequestShipmentViewModel.cs" />
-    <Compile Include="Views\Agreements.xaml.cs">
+    <Compile Include="ViewModels\PartnerInteraction\AgreementsViewModel.cs" />
+    <Compile Include="ViewModels\PartnerInteraction\ContractsViewModel.cs" />
+    <Compile Include="ViewModels\PartnerInteraction\RequestAdmissionViewModel.cs" />
+    <Compile Include="ViewModels\PartnerInteraction\RequestRelocationViewModel.cs" />
+    <Compile Include="ViewModels\PartnerInteraction\RequestShipmentViewModel.cs" />
+    <Compile Include="ViewModels\Sales\BunkeringViewModel.cs" />
+    <Compile Include="ViewModels\Sales\WarehouseSalesViewModel.cs" />
+    <Compile Include="Views\PartnerInteraction\Agreements.xaml.cs">
       <DependentUpon>Agreements.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Contracts.xaml.cs">
+    <Compile Include="Views\PartnerInteraction\Contracts.xaml.cs">
       <DependentUpon>Contracts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RequestAdmission.xaml.cs">
+    <Compile Include="Views\PartnerInteraction\RequestAdmission.xaml.cs">
       <DependentUpon>RequestAdmission.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RequestRelocation.xaml.cs">
+    <Compile Include="Views\PartnerInteraction\RequestRelocation.xaml.cs">
       <DependentUpon>RequestRelocation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RequestShipment.xaml.cs">
+    <Compile Include="Views\PartnerInteraction\RequestShipment.xaml.cs">
       <DependentUpon>RequestShipment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sales\Bunkering.xaml.cs">
+      <DependentUpon>Bunkering.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sales\WarehouseSales.xaml.cs">
+      <DependentUpon>WarehouseSales.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -105,27 +117,39 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Menu\Sales.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Menu\PartnerInteraction.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Agreements.xaml">
+    <Page Include="Views\PartnerInteraction\Agreements.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Contracts.xaml">
+    <Page Include="Views\PartnerInteraction\Contracts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RequestAdmission.xaml">
+    <Page Include="Views\PartnerInteraction\RequestAdmission.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RequestRelocation.xaml">
+    <Page Include="Views\PartnerInteraction\RequestRelocation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RequestShipment.xaml">
+    <Page Include="Views\PartnerInteraction\RequestShipment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sales\Bunkering.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sales\WarehouseSales.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,6 +161,5 @@
     <PackageReference Include="Prism.Wpf" Version="7.2.0.1367" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.2.5" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

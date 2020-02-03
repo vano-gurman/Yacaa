@@ -1,0 +1,10 @@
+﻿<UserControl x:Class="Yacaa.Modules.Accounting.Views.PartnerInteraction.RequestShipment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:strings="clr-namespace:Yacaa.Shared.Strings.Views;assembly=Yacaa.Shared"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <TextBlock Text="{x:Static strings:PartnerInteraction.RequestShipment}"/>
+    </Grid>
+</UserControl>

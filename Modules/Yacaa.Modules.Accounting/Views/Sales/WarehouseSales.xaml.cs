@@ -1,13 +1,13 @@
 ﻿using System.Windows.Controls;
 
-namespace Yacaa.Modules.Accounting.Views
+namespace Yacaa.Modules.Accounting.Views.Sales
 {
     /// <summary>
     /// Interaction logic for RequestShipment
     /// </summary>
-    public partial class RequestShipment : UserControl
+    public partial class WarehouseSales
     {
-        public RequestShipment()
+        public WarehouseSales()
         {
             InitializeComponent();
         }

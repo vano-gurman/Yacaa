@@ -1,23 +1,21 @@
-﻿using System.Collections.Generic;
-using Prism.Mvvm;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using Prism.Events;
 using Yacaa.Shared.Navigation;
 using Yacaa.Shared.ViewModels;
 using Prism.Commands;
-using Yacaa.Modules.Accounting.Views.PartnerInteraction;
+using Yacaa.Modules.Accounting.Views.Sales;
 using Yacaa.Shared.Commands;
 
 namespace Yacaa.Modules.Accounting.Menu
 {
-    public class PartnerInteractionViewModel : BaseViewModel
+    public class SalesViewModel : BaseViewModel
     {
         private readonly IApplicationCommands _applicationCommands;
         public ObservableCollection<ExpanderItem> ExpanderItems { get; }
         public NavigationItem SelectedItem { get; set; }
         private DelegateCommand<object[]> _selectedCommand;
 
-        public PartnerInteractionViewModel(IEventAggregator ea, IApplicationCommands applicationCommands) : base(ea)
+        public SalesViewModel(IEventAggregator ea, IApplicationCommands applicationCommands) : base(ea)
         {
             _applicationCommands = applicationCommands;
             ExpanderItems = GenerateItems();
@@ -38,13 +36,10 @@ namespace Yacaa.Modules.Accounting.Menu
         {
             return new ObservableCollection<ExpanderItem>()
             {
-                new ExpanderItem(Shared.Strings.Views.PartnerInteraction.Label, new ObservableCollection<NavigationItem>()
+                new ExpanderItem(Shared.Strings.Views.Sales.Label, new ObservableCollection<NavigationItem>()
                 {
-                    new NavigationItem(Shared.Strings.Views.PartnerInteraction.Contracts, nameof(Contracts)),
-                    new NavigationItem(Shared.Strings.Views.PartnerInteraction.Agreements, nameof(Agreements)),
-                    new NavigationItem(Shared.Strings.Views.PartnerInteraction.RequestAdmission, nameof(RequestAdmission)),
-                    new NavigationItem(Shared.Strings.Views.PartnerInteraction.RequestRelocation, nameof(RequestRelocation)),
-                    new NavigationItem(Shared.Strings.Views.PartnerInteraction.RequestShipment, nameof(RequestShipment)),
+                    new NavigationItem(Shared.Strings.Views.Sales.Bunkering, nameof(Bunkering)),
+                    new NavigationItem(Shared.Strings.Views.Sales.WarehouseSales, nameof(WarehouseSales))
                 })
             };
         }
