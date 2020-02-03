@@ -1,51 +1,30 @@
-﻿using System.Collections.Generic;
-using Prism.Mvvm;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using Prism.Events;
 using Yacaa.Shared.Navigation;
 using Yacaa.Shared.ViewModels;
-using Prism.Commands;
 using Yacaa.Modules.Accounting.Views.PartnerInteraction;
 using Yacaa.Shared.Commands;
 
 namespace Yacaa.Modules.Accounting.Menu
 {
-    public class PartnerInteractionViewModel : BaseViewModel
+    public class PartnerInteractionViewModel : MenuItemViewModel
     {
-        private readonly IApplicationCommands _applicationCommands;
-        public ObservableCollection<ExpanderItem> ExpanderItems { get; }
-        public NavigationItem SelectedItem { get; set; }
-        private DelegateCommand<object[]> _selectedCommand;
 
-        public PartnerInteractionViewModel(IEventAggregator ea, IApplicationCommands applicationCommands) : base(ea)
+        protected PartnerInteractionViewModel(IEventAggregator ea, IApplicationCommands applicationCommands) : base(ea, applicationCommands)
         {
-            _applicationCommands = applicationCommands;
-            ExpanderItems = GenerateItems();
+            Label = Shared.Strings.Views.PartnerInteraction.Label;
+            NavigationItems = GenerateItems();
         }
         
-        public DelegateCommand<object[]> SelectedCommand =>
-            _selectedCommand ??= new DelegateCommand<object[]>(ExecuteSelectedCommand);
-
-        void ExecuteSelectedCommand(object[] o)
+        private static ObservableCollection<NavigationItem> GenerateItems()
         {
-            if (o[0] is NavigationItem item)
+            return new ObservableCollection<NavigationItem>()
             {
-                _applicationCommands.NavigateCommand.Execute(item.NavigationPath);
-            } 
-        }
-
-        private static ObservableCollection<ExpanderItem> GenerateItems()
-        {
-            return new ObservableCollection<ExpanderItem>()
-            {
-                new ExpanderItem(Shared.Strings.Views.PartnerInteraction.Label, new ObservableCollection<NavigationItem>()
-                {
-                    new NavigationItem(Shared.Strings.Views.PartnerInteraction.Contracts, nameof(Contracts)),
-                    new NavigationItem(Shared.Strings.Views.PartnerInteraction.Agreements, nameof(Agreements)),
-                    new NavigationItem(Shared.Strings.Views.PartnerInteraction.RequestAdmission, nameof(RequestAdmission)),
-                    new NavigationItem(Shared.Strings.Views.PartnerInteraction.RequestRelocation, nameof(RequestRelocation)),
-                    new NavigationItem(Shared.Strings.Views.PartnerInteraction.RequestShipment, nameof(RequestShipment)),
-                })
+                new NavigationItem(Shared.Strings.Views.PartnerInteraction.Contracts, nameof(Contracts)),
+                new NavigationItem(Shared.Strings.Views.PartnerInteraction.Agreements, nameof(Agreements)),
+                new NavigationItem(Shared.Strings.Views.PartnerInteraction.RequestAdmission, nameof(RequestAdmission)),
+                new NavigationItem(Shared.Strings.Views.PartnerInteraction.RequestRelocation, nameof(RequestRelocation)),
+                new NavigationItem(Shared.Strings.Views.PartnerInteraction.RequestShipment, nameof(RequestShipment)),
             };
         }
     }

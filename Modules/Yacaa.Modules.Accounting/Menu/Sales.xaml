@@ -1,38 +1,31 @@
-﻿<ItemsControl x:Class="Yacaa.Modules.Accounting.Menu.Sales"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:prism="http://prismlibrary.com/"
-             prism:ViewModelLocator.AutoWireViewModel="True"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             ItemsSource="{Binding ExpanderItems}">
+﻿<Expander x:Class="Yacaa.Modules.Accounting.Menu.Sales"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:prism="http://prismlibrary.com/"
+          prism:ViewModelLocator.AutoWireViewModel="True"
+          xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+          Style="{StaticResource MaterialDesignExpander}"
+          Header="{Binding Label}">
 
-    <ItemsControl.Resources>
+    <Expander.Resources>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-    </ItemsControl.Resources>
-    <ItemsControl.ItemTemplate>
-        <DataTemplate>
-            <Expander Header="{Binding Caption}" HorizontalAlignment="Stretch">
-                <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="20,4,20,8">
-                    <ListBox ItemsSource="{Binding NavigationItems}"
-                             SelectedItem="{Binding Path=DataContext.SelectedItem,
-                             RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <prism:InvokeCommandAction 
-                                    Command="{Binding RelativeSource={RelativeSource AncestorLevel=2,
-                                    Mode=FindAncestor, AncestorType={x:Type ItemsControl}},
-                                    Path=DataContext.SelectedCommand}"
-                                    TriggerParameterPath="AddedItems"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Caption}" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </StackPanel>
-            </Expander>
-        </DataTemplate>
-    </ItemsControl.ItemTemplate>
-</ItemsControl>
+    </Expander.Resources>
+
+    <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="20,4,20,8">
+        <ListBox ItemsSource="{Binding NavigationItems}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <prism:InvokeCommandAction 
+                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Expander}},
+                        Path=DataContext.SelectedCommand}"
+                        TriggerParameterPath="AddedItems"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Caption}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
+</Expander>

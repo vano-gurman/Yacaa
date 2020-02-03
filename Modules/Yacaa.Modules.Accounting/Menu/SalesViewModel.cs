@@ -8,39 +8,20 @@ using Yacaa.Shared.Commands;
 
 namespace Yacaa.Modules.Accounting.Menu
 {
-    public class SalesViewModel : BaseViewModel
+    public class SalesViewModel : MenuItemViewModel
     {
-        private readonly IApplicationCommands _applicationCommands;
-        public ObservableCollection<ExpanderItem> ExpanderItems { get; }
-        public NavigationItem SelectedItem { get; set; }
-        private DelegateCommand<object[]> _selectedCommand;
-
-        public SalesViewModel(IEventAggregator ea, IApplicationCommands applicationCommands) : base(ea)
+        protected SalesViewModel(IEventAggregator ea, IApplicationCommands applicationCommands) : base(ea, applicationCommands)
         {
-            _applicationCommands = applicationCommands;
-            ExpanderItems = GenerateItems();
+            Label = Shared.Strings.Views.Sales.Label;
+            NavigationItems = GenerateItems();
         }
         
-        public DelegateCommand<object[]> SelectedCommand =>
-            _selectedCommand ??= new DelegateCommand<object[]>(ExecuteSelectedCommand);
-
-        void ExecuteSelectedCommand(object[] o)
+        private static ObservableCollection<NavigationItem> GenerateItems()
         {
-            if (o[0] is NavigationItem item)
+            return new ObservableCollection<NavigationItem>()
             {
-                _applicationCommands.NavigateCommand.Execute(item.NavigationPath);
-            } 
-        }
-
-        private static ObservableCollection<ExpanderItem> GenerateItems()
-        {
-            return new ObservableCollection<ExpanderItem>()
-            {
-                new ExpanderItem(Shared.Strings.Views.Sales.Label, new ObservableCollection<NavigationItem>()
-                {
-                    new NavigationItem(Shared.Strings.Views.Sales.Bunkering, nameof(Bunkering)),
-                    new NavigationItem(Shared.Strings.Views.Sales.WarehouseSales, nameof(WarehouseSales))
-                })
+                new NavigationItem(Shared.Strings.Views.Sales.Bunkering, nameof(Bunkering)),
+                new NavigationItem(Shared.Strings.Views.Sales.WarehouseSales, nameof(WarehouseSales))
             };
         }
     }

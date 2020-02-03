@@ -12,7 +12,7 @@ namespace Yacaa.Shared.ViewModels
         
         [DoNotNotify]
         private readonly IEventAggregator _ea;
-        [DoNotNotify]
+        
         public string Title { get; set; } = "Yacaa";
         
         protected BaseViewModel(IEventAggregator ea)
