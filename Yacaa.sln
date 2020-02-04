@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa.Modules.Analytics", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa.Modules.Login", "Modules\Yacaa.Modules.Login\Yacaa.Modules.Login.csproj", "{1723B4D6-0E62-4BFE-A811-A8E93D1AADE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa.Shared", "Yacaa.Shared\Yacaa.Shared.csproj", "{29DC8FCC-ED0B-413F-A907-E686E067708C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa.Shared", "Yacaa.Shared\Yacaa.Shared.csproj", "{AFB4B1C4-5C41-456F-A5C3-F16459215B7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,10 +51,10 @@ Global
 		{1723B4D6-0E62-4BFE-A811-A8E93D1AADE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1723B4D6-0E62-4BFE-A811-A8E93D1AADE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1723B4D6-0E62-4BFE-A811-A8E93D1AADE3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{29DC8FCC-ED0B-413F-A907-E686E067708C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{29DC8FCC-ED0B-413F-A907-E686E067708C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{29DC8FCC-ED0B-413F-A907-E686E067708C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{29DC8FCC-ED0B-413F-A907-E686E067708C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFB4B1C4-5C41-456F-A5C3-F16459215B7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFB4B1C4-5C41-456F-A5C3-F16459215B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFB4B1C4-5C41-456F-A5C3-F16459215B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFB4B1C4-5C41-456F-A5C3-F16459215B7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
