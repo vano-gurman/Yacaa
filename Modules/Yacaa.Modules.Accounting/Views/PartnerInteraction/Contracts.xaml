@@ -1,10 +1,30 @@
-﻿<UserControl x:Class="Yacaa.Modules.Accounting.Views.PartnerInteraction.Contracts"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:prism="http://prismlibrary.com/"             
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:strings="clr-namespace:Yacaa.Shared.Strings;assembly=Yacaa.Shared"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:sf="http://schemas.syncfusion.com/wpf"
+    xmlns:PartnerInteraction="clr-namespace:Yacaa.Modules.Accounting.ViewModels.PartnerInteraction"
+    x:Class="Yacaa.Modules.Accounting.Views.PartnerInteraction.Contracts"             
              prism:ViewModelLocator.AutoWireViewModel="True"
-             xmlns:strings="clr-namespace:Yacaa.Shared.Strings;assembly=Yacaa.Shared">
+             >
+    <UserControl.Resources>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"/>
+    </UserControl.Resources>
     <Grid>
-        <TextBlock Text="{x:Static strings:Views.PartnerInteraction.Contracts}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel HorizontalAlignment="Stretch" Height="80">
+            <TextBlock Text="CONTENT_CONTROL_PLACEHOLDER" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </DockPanel>
+
+        <sf:SfDataGrid Grid.Row="1" HorizontalAlignment="Stretch" AllowDeleting="True" AllowEditing="True"
+                       ItemsSource="{Binding Contracts}" AllowDraggingColumns="True" AllowResizingColumns="True" AllowFiltering="True" ShowGroupDropArea="True" AddNewRowPosition="Bottom">
+            
+        </sf:SfDataGrid>
+
     </Grid>
 </UserControl>

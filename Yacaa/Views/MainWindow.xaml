@@ -38,8 +38,11 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-
-                        <TextBlock Text="Меню возможностей:" />
+                        
+                        <materialDesign:Card HorizontalAlignment="Stretch" Height="40">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="TOOLBOX_PLACEHOLDER"/>
+                        </materialDesign:Card>
+                        
                         <ContentControl prism:RegionManager.RegionName="{x:Static strings:RegionNames.Content}" Grid.Row="1"/>
 
                         <materialDesign:Snackbar MessageQueue="{Binding SnackQueue}" x:Name="MainSnackbar" Grid.Row="1" HorizontalAlignment="Center" Width="Auto"/>
