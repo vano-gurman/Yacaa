@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:s="https://github.com/canton7/Stylet"
+        xmlns:models="clr-namespace:Yacaa.Models"
         xmlns:styles="clr-namespace:Yacaa.Styles"
         Style="{StaticResource MaterialDesignWindow}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -20,31 +21,81 @@
                         <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" HorizontalAlignment="Left" WindowChrome.IsHitTestVisibleInChrome="True" 
                                       x:Name="MenuToggleButton" IsChecked="{Binding IsMenuOpen, Mode=TwoWay}" />
                         <TextBlock Text="{Binding Title, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
+                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" WindowChrome.IsHitTestVisibleInChrome="True" Visibility="Visible">
+                            <StackPanel.Resources>
+                                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}" >
+                                    <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                                </Style>
+                            </StackPanel.Resources>
+                            <Button Command="{s:Action WindowMinimize}" Visibility="Visible">
+                                <materialDesign:PackIcon Kind="WindowMinimize" />
+                            </Button>
+                            <Button Command="{s:Action WindowToggleState}" Visibility="Visible">
+                                <Button.Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                        <Setter Property="Content">
+                                            <Setter.Value>
+                                                <materialDesign:PackIcon Kind="WindowMaximize" />
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="Maximized">
+                                                <Setter Property="Content">
+                                                    <Setter.Value>
+                                                        <materialDesign:PackIcon Kind="WindowRestore" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                            <Button Command="{s:Action WindowClose}">
+                                <materialDesign:PackIcon Kind="WindowClose" />
+                            </Button>
+                        </StackPanel>
                 </Grid>
         </styles:MaterialDesignWindow.HeaderContent>
         
         <Window.Content>
                 <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
-                        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" >
+                        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}">
                                 <materialDesign:DrawerHost.LeftDrawerContent>
                                         <DockPanel Width="260">
-                                                
+                                                <DockPanel.Resources>
+                                                        <DataTemplate x:Key="MenuTemplate" DataType="{x:Type models:MVVM.MenuItem}">
+                                                                <Expander Header="{Binding Label, Mode=OneWay}">
+                                                                        <StackPanel Orientation="Vertical"
+                                                                                    TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                                                                                    Margin="20,4,20,8">
+                                                                                <ListBox ItemsSource="{Binding Items, Mode=OneWay}"
+                                                                                         DisplayMemberPath="DisplayName"
+                                                                                         SelectedItem="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}},
+                                                                                         Path=DataContext.SelectedItem,
+                                                                                         UpdateSourceTrigger=PropertyChanged}"
+                                                                                         SelectionChanged="{s:Action Navigate}">
+                                                                                </ListBox>
+                                                                        </StackPanel>
+                                                                </Expander>
+                                                        </DataTemplate>
+                                                </DockPanel.Resources>
+                                                <ItemsControl ItemTemplate="{StaticResource MenuTemplate}" ItemsSource="{Binding MenuItems}"/>
                                         </DockPanel>
                                 </materialDesign:DrawerHost.LeftDrawerContent>
-                                <DockPanel>
-                                        <Grid>
-                                                <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="*" />
-                                                </Grid.RowDefinitions>
+                                <Grid>
+                                        <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
                         
-                                                <materialDesign:Card HorizontalAlignment="Stretch" Height="40">
-                                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="TOOLBOX_PLACEHOLDER"/>
-                                                </materialDesign:Card>
+                                        <materialDesign:Card HorizontalAlignment="Stretch" Height="40">
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="TOOLBOX_PLACEHOLDER"/>
+                                        </materialDesign:Card>
+                        
+                                        <ContentControl s:View.Model="{Binding ActiveItem}" Grid.Row="1"/>
 
-                                                <materialDesign:Snackbar MessageQueue="{Binding SnackQueue}" x:Name="MainSnackbar" Grid.Row="1" HorizontalAlignment="Center" Width="Auto"/>
-                                        </Grid>
-                                </DockPanel>
+                                        <materialDesign:Snackbar MessageQueue="{Binding SnackQueue}" x:Name="MainSnackbar" Grid.Row="1" HorizontalAlignment="Center" Width="Auto"/>
+                                </Grid>
                         </materialDesign:DrawerHost>
                 </materialDesign:DialogHost>
         </Window.Content>

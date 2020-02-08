@@ -92,39 +92,7 @@
                                         </TextBlock.Style>
                                     </TextBlock>
                                     <Image Source="{TemplateBinding Icon}" HorizontalAlignment="Left" MaxHeight="32"/>
-                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" WindowChrome.IsHitTestVisibleInChrome="True">
-                                        <StackPanel.Resources>
-                                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}" >
-                                                <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
-                                            </Style>
-                                        </StackPanel.Resources>
-                                        <Button Command="{x:Static st:MaterialDesignWindow.Minimize}">
-                                            <materialDesign:PackIcon Kind="WindowMinimize" />
-                                        </Button>
-                                        <Button Command="{x:Static st:MaterialDesignWindow.ToggleMaximize}">
-                                            <Button.Style>
-                                                <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-                                                    <Setter Property="Content">
-                                                        <Setter.Value>
-                                                            <materialDesign:PackIcon Kind="WindowMaximize" />
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="Maximized">
-                                                            <Setter Property="Content">
-                                                                <Setter.Value>
-                                                                    <materialDesign:PackIcon Kind="WindowRestore" />
-                                                                </Setter.Value>
-                                                            </Setter>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Button.Style>
-                                        </Button>
-                                        <Button Command="{x:Static st:MaterialDesignWindow.Close}">
-                                            <materialDesign:PackIcon Kind="WindowClose" />
-                                        </Button>
-                                    </StackPanel>
+                                    
                                 </Grid>
                             </materialDesign:ColorZone>
                         </Grid>
