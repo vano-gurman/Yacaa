@@ -3,6 +3,7 @@ using System;
 using Prism.Events;
 using Prism.Regions;
 using Yacaa.Shared.Commands;
+using Yacaa.Shared.Interfaces;
 using Yacaa.Shared.Strings;
 using Yacaa.Shared.ViewModels;
 

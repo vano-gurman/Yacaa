@@ -1,4 +1,5 @@
 ﻿using Prism.Commands;
+using Yacaa.Shared.Interfaces;
 
 namespace Yacaa.Shared.Commands
 {

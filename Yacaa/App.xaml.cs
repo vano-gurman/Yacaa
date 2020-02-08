@@ -10,6 +10,7 @@ using Yacaa.Modules.Analytics;
 using Yacaa.Modules.Login;
 using Yacaa.RegionAdapters;
 using Yacaa.Shared.Commands;
+using Yacaa.Shared.Interfaces;
 using Yacaa.ViewModels;
 
 namespace Yacaa

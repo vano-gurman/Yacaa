@@ -5,8 +5,8 @@
              xmlns:strings="clr-namespace:Yacaa.Shared.Strings;assembly=Yacaa.Shared"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:sf="http://schemas.syncfusion.com/wpf"
-    xmlns:PartnerInteraction="clr-namespace:Yacaa.Modules.Accounting.ViewModels.PartnerInteraction"
-    x:Class="Yacaa.Modules.Accounting.Views.PartnerInteraction.Contracts"             
+             xmlns:PartnerInteraction="clr-namespace:Yacaa.Modules.Accounting.ViewModels.PartnerInteraction"
+             x:Class="Yacaa.Modules.Accounting.Views.PartnerInteraction.Contracts"             
              prism:ViewModelLocator.AutoWireViewModel="True"
              >
     <UserControl.Resources>

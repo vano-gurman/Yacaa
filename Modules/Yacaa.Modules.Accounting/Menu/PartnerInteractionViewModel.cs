@@ -4,6 +4,7 @@ using Yacaa.Shared.Navigation;
 using Yacaa.Shared.ViewModels;
 using Yacaa.Modules.Accounting.Views.PartnerInteraction;
 using Yacaa.Shared.Commands;
+using Yacaa.Shared.Interfaces;
 
 namespace Yacaa.Modules.Accounting.Menu
 {

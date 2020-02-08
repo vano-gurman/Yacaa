@@ -2,6 +2,7 @@
 using Prism.Commands;
 using Prism.Events;
 using Yacaa.Shared.Commands;
+using Yacaa.Shared.Interfaces;
 using Yacaa.Shared.Navigation;
 
 namespace Yacaa.Shared.ViewModels

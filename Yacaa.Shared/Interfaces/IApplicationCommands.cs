@@ -1,6 +1,6 @@
 ﻿using Prism.Commands;
 
-namespace Yacaa.Shared.Commands
+namespace Yacaa.Shared.Interfaces
 {
     public interface IApplicationCommands
     {

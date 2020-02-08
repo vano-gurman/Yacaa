@@ -15,13 +15,7 @@ namespace Yacaa.Modules.Accounting.ViewModels.PartnerInteraction
 
         private ObservableCollection<Contract> GenerateData()
         {
-            return new ObservableCollection<Contract>()
-            {
-                new Contract("#111221", "12/01/2019", "Incoming", "RUB", "28/01/2020", "YES"),
-                new Contract("#111222", "13/01/2019", "Outgoing", "USD", "29/01/2020", "NO"),
-                new Contract("#111223", "14/01/2019", "Incoming", "RUB", "30/01/2020", "NO"),
-                new Contract("#111224", "15/01/2019", "Incoming", "USD", "31/01/2020", "YES")
-            };
+            return new ObservableCollection<Contract>();
         }
     }
 }

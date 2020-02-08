@@ -5,6 +5,7 @@ using Yacaa.Shared.ViewModels;
 using Prism.Commands;
 using Yacaa.Modules.Accounting.Views.Sales;
 using Yacaa.Shared.Commands;
+using Yacaa.Shared.Interfaces;
 
 namespace Yacaa.Modules.Accounting.Menu
 {

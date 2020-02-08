@@ -1,37 +1,27 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using Yacaa.Shared.Models.Dictionaries;
 
 namespace Yacaa.Shared.Models
 {
     public class Contract
     {
+        public int Id { get; set; }
+        [Required]
+        [MaxLength(50)]
         public string Number { get; set; }
-        public string Date { get; set; }
-        public string ContractType { get; set; }
-        public string Currency { get; set; }
-        public string ValidUntil { get; set; }
-        public string Prolongation { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
+        [Required]
+        public ContractType ContractType { get; set; }
+        [Required]
+        public Currency Currency { get; set; }
+        [Required]
+        public DateTime ValidUntil { get; set; }
+        [Required]
+        public bool Prolongation { get; set; }
+        [MaxLength(200)]
         public string ProlongationTerms { get; set; } = null;
 
-        public Contract(string number, string date, string contractType, string currency, string validUntil, string prolongation, string prolongationTerms)
-        {
-            Number = number;
-            Date = date;
-            ContractType = contractType;
-            Currency = currency;
-            ValidUntil = validUntil;
-            Prolongation = prolongation;
-            ProlongationTerms = prolongationTerms;
-        }
-
-        public Contract(string number, string date, string contractType, string currency, string validUntil, string prolongation)
-        {
-            Number = number;
-            Date = date;
-            ContractType = contractType;
-            Currency = currency;
-            ValidUntil = validUntil;
-            Prolongation = prolongation;
-        }
-        
     }
 }
