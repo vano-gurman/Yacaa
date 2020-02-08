@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dependencies\Stylet\Stylet.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.6.1" />
+    <PackageReference Include="MaterialDesignThemes" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.2.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\images" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\images\login_logo.png" />
+    <Resource Include="Resources\images\login_logo.png" />
+  </ItemGroup>
+
+</Project>
