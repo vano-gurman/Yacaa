@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Yacaa.Shared.Encryption;
 
-namespace Yacaa.Service.Settings.Models
+namespace Yacaa.Services.Settings.Models
 {
     public class DbSettings
     {

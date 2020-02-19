@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa.Shared", "Yacaa.Share
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa.Services.DataAccess", "Services\Yacaa.Services.DataAccess\Yacaa.Services.DataAccess.csproj", "{970ACB80-3614-4EDB-9A3B-77E46665A16C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa.Service.Settings", "Services\Yacaa.Service.Settings\Yacaa.Service.Settings.csproj", "{17725517-6A55-4FAE-BF6B-54CDB2EEFF11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa.Services.Settings", "Services\Yacaa.Services.Settings\Yacaa.Services.Settings.csproj", "{17725517-6A55-4FAE-BF6B-54CDB2EEFF11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

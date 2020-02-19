@@ -1,6 +1,6 @@
-﻿using Yacaa.Service.Settings.Enum;
+﻿using Yacaa.Services.Settings.Enum;
 
-namespace Yacaa.Service.Settings.Configuration
+namespace Yacaa.Services.Settings.Configuration
 {
     public class SettingsConfiguration
     {

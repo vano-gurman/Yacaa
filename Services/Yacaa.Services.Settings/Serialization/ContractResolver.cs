@@ -4,7 +4,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Yacaa.Service.Settings.Serialization
+namespace Yacaa.Services.Settings.Serialization
 {
     internal sealed class ContractResolver : DefaultContractResolver
     {

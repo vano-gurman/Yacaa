@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Yacaa.Service.Settings.Service
+namespace Yacaa.Services.Settings.Service
 {
     public class Stager<T> where T : SettingsServiceBase
     {

@@ -1,5 +1,5 @@
 ﻿using System.Security;
-using Yacaa.Service.Settings;
+using Yacaa.Services.Settings;
 using Yacaa.Shared.Encryption;
 using Yacaa.ViewModels.Base;
 

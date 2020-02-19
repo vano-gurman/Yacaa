@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Yacaa.Service.Settings.Enum
+namespace Yacaa.Services.Settings.Enum
 {
     public static class StorageSpacePath
     {

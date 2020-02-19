@@ -7,10 +7,10 @@ using Stylet;
 using StyletIoC;
 using Yacaa.Interfaces.Factories;
 using Yacaa.Interfaces.ViewModels;
-using Yacaa.Service.Settings;
-using Yacaa.Service.Settings.Configuration;
-using Yacaa.Service.Settings.Enum;
 using Yacaa.Services.DataAccess;
+using Yacaa.Services.Settings;
+using Yacaa.Services.Settings.Configuration;
+using Yacaa.Services.Settings.Enum;
 using Yacaa.Validation;
 using Yacaa.ViewModels;
 

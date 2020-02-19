@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
 using Newtonsoft.Json;
-using Yacaa.Service.Settings.Configuration;
-using Yacaa.Service.Settings.Enum;
-using Yacaa.Service.Settings.Serialization;
+using Yacaa.Services.Settings.Configuration;
+using Yacaa.Services.Settings.Enum;
+using Yacaa.Services.Settings.Serialization;
 
-namespace Yacaa.Service.Settings.Service
+namespace Yacaa.Services.Settings.Service
 {
     public abstract partial class SettingsServiceBase
     {

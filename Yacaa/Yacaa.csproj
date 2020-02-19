@@ -9,8 +9,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dependencies\Stylet\Stylet.csproj" />
-    <ProjectReference Include="..\Services\Yacaa.Service.Settings\Yacaa.Service.Settings.csproj" />
     <ProjectReference Include="..\Services\Yacaa.Services.DataAccess\Yacaa.Services.DataAccess.csproj" />
+    <ProjectReference Include="..\Services\Yacaa.Services.Settings\Yacaa.Services.Settings.csproj" />
     <ProjectReference Include="..\Yacaa.Shared\Yacaa.Shared.csproj" />
   </ItemGroup>
 

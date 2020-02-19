@@ -1,4 +1,4 @@
-﻿namespace Yacaa.Service.Settings.Models
+﻿namespace Yacaa.Services.Settings.Models
 {
     public class UserSettings
     {

@@ -6,7 +6,7 @@ using Stylet;
 using Yacaa.Events;
 using Yacaa.Interfaces.Factories;
 using Yacaa.Interfaces.ViewModels;
-using Yacaa.Service.Settings;
+using Yacaa.Services.Settings;
 using Yacaa.ViewModels.Content;
 using Yacaa.Views;
 using MenuItem = Yacaa.Models.MenuItem;

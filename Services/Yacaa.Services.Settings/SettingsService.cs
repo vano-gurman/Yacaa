@@ -1,8 +1,8 @@
-﻿using Yacaa.Service.Settings.Configuration;
-using Yacaa.Service.Settings.Models;
-using Yacaa.Service.Settings.Service;
+﻿using Yacaa.Services.Settings.Configuration;
+using Yacaa.Services.Settings.Models;
+using Yacaa.Services.Settings.Service;
 
-namespace Yacaa.Service.Settings
+namespace Yacaa.Services.Settings
 {
     public class SettingsService : SettingsServiceBase
     {

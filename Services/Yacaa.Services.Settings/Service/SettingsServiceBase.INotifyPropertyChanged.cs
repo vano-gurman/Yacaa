@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace Yacaa.Service.Settings.Service
+namespace Yacaa.Services.Settings.Service
 {
     public abstract partial class SettingsServiceBase : INotifyPropertyChanged
     {

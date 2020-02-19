@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Security;
-using MaterialDesignThemes.Wpf;
 using Stylet;
-using Yacaa.Service.Settings;
+using Yacaa.Services.Settings;
 using Yacaa.Shared.Encryption;
 using Yacaa.ViewModels.Base;
 using Yacaa.ViewModels.Dialogs;

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Yacaa.Service.Settings.Serialization
+namespace Yacaa.Services.Settings.Serialization
 {
     public static class Serializer
     {
