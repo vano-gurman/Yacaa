@@ -5,52 +5,104 @@
         xmlns:s="https://github.com/canton7/Stylet"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:styles="clr-namespace:Yacaa.Styles"
+        xmlns:xaml="clr-namespace:Yacaa.Xaml"
+        xmlns:converters="clr-namespace:Yacaa.Xaml.Converters"
         ResizeMode="CanMinimize"
+        FontFamily="Calibri"
+        Background="{DynamicResource MaterialDesignPaper}"
         WindowStyle="None"
-        Title="LoginWindow" Height="550" Width="400">
+        FontWeight="Regular"
+        Style="{StaticResource MaterialDesignWindow}"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Aliased"
+        TextElement.FontSize="20"
+        Title="{Binding Title}" Height="480" Width="400"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <ImageSource x:Key="LoginLogo">pack://application:,,,/Resources/images/login_logo.png</ImageSource>
+        <ImageSource x:Key="LoginLogoTransparent">pack://application:,,,/Resources/images/login_logo_transparent.png</ImageSource>
+        <converters:BoolToColorConverter x:Key="ColorConverter"/>
     </Window.Resources>
     <b:Interaction.Behaviors>
         <styles:DragWindowBehavior/>
     </b:Interaction.Behaviors>
-    <Grid>
-        
-        <Grid  HorizontalAlignment="Stretch">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <materialDesign:PopupBox VerticalAlignment="Top" HorizontalAlignment="Right"
-                                     PlacementMode="BottomAndAlignRightEdges" StaysOpen="False"
-                                     Margin="0 10 10 0">
-                <StackPanel>
-                    <Button Content="Настройки"/>
-                    <Button Content="О программе" IsEnabled="False"/>
-                    <Separator/>
-                    <Button Content="Выход" Click="{s:Action Close}"/>
-                </StackPanel>
-            </materialDesign:PopupBox>
-            
-            <Image Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 5 5 5" 
-                   Source="{StaticResource LoginLogo}"/>
-            <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignTextBlock}"
-                       FontSize="22" Text="Авторизация"/>
-            <TextBox  Text="{Binding UserName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  
-                      materialDesign:HintAssist.Hint="Имя пользователя" MaxLength="15" 
-                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" 
-                      Grid.Row="2" Width="220" VerticalAlignment="Center"/>
-            <PasswordBox Grid.Row="3" Width="220"  materialDesign:HintAssist.Hint="Пароль"
-                         Foreground="Black"  FontSize="15" PasswordChar="●" 
-                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
-
-            <CheckBox Foreground="Black" Content="Сохранить" IsChecked="{Binding SaveUser}"  FocusVisualStyle="{x:Null}" Margin="0 20 0 0" Grid.Row="4"  FontSize="15"  />
-            <Button  Command="{s:Action Login}" Grid.Row="5" Content="Вход"  FontSize="16" Width="220"
-                     Style="{StaticResource MaterialDesignRaisedButton}"/>
-        </Grid>
-    </Grid>
+   
+    <styles:MaterialDesignWindow.HeaderContent>
+        <materialDesign:PopupBox WindowChrome.IsHitTestVisibleInChrome="True"
+                                 VerticalAlignment="Center" HorizontalAlignment="Right"
+                                 PlacementMode="BottomAndAlignRightEdges" PopupMode="Click">
+            <StackPanel Margin="5 5 5 5">
+                <Button Content="Настройки" Style="{StaticResource MaterialDesignFlatButton}" Command="{s:Action OpenDialog}"/>
+                <Button Content="О программе" Style="{StaticResource MaterialDesignFlatButton}" IsEnabled="False"/>
+                <Separator/>
+                <Button Content="Выход" Style="{StaticResource MaterialDesignFlatButton}" Click="{s:Action CloseWindow}"/>
+            </StackPanel>
+        </materialDesign:PopupBox>
+    </styles:MaterialDesignWindow.HeaderContent>
+   
+    <Window.Content>
+        <materialDesign:DialogHost x:Name="LoginDialogHost" Identifier="LoginDialog">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image Margin="20 20 20 0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Source="{StaticResource LoginLogoTransparent}" RenderOptions.BitmapScalingMode="HighQuality"/>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="45"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="45"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="1"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                               Style="{StaticResource MaterialDesignHeadline3TextBlock}"
+                               FontSize="18" Text="Авторизация"/>
+                    <TextBox  Grid.Row="1" Grid.Column="1"
+                              Text="{Binding UserName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  
+                              materialDesign:HintAssist.Hint="Имя пользователя" MaxLength="15" 
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" 
+                              VerticalAlignment="Center"/>
+                    <PasswordBox Grid.Row="2" Grid.Column="1"
+                                 materialDesign:HintAssist.Hint="Пароль" Foreground="Black"  FontSize="15" PasswordChar="●" 
+                                 xaml:PasswordBoxHelper.SecurePassword="{Binding Password, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="45"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="45"/>
+                    </Grid.ColumnDefinitions>
+                    <ToggleButton Grid.Column="1" IsChecked="{Binding SaveCredentials}"
+                                  HorizontalAlignment="Left" VerticalAlignment="Center"
+                                  Style="{StaticResource MaterialDesignSwitchToggleButton}" 
+                                  ToolTip="Запомнить" />
+                    <Button Grid.Column="2" Margin="20 0 0 0" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Content="Вход"
+                            VerticalAlignment="Center" FontSize="16" Style="{StaticResource MaterialDesignRaisedButton}">
+                        <Button.CommandParameter>
+                            <ContentControl s:View.Model="{Binding ActiveItem}"/>
+                        </Button.CommandParameter>
+                    </Button>
+                </Grid>
+                
+                <materialDesign:Card Grid.Row="4" HorizontalAlignment="Stretch" Height="30">
+                    <StackPanel Orientation="Horizontal" Margin="45 0 45 0" HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="DatabaseRemove" Foreground="Firebrick" VerticalAlignment="Center" FontSize="20"/>
+                        <TextBlock Margin="5 0 0 0" FontSize="14" Foreground="Firebrick"
+                                   VerticalAlignment="Center" Text="Нет подключения к базе данных."/>
+                    </StackPanel>
+                </materialDesign:Card>
+            </Grid>
+        </materialDesign:DialogHost>
+    </Window.Content>
 </Window>

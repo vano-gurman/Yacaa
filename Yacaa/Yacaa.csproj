@@ -4,10 +4,14 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>icon_yacaa.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Dependencies\Stylet\Stylet.csproj" />
+    <ProjectReference Include="..\Services\Yacaa.Service.Settings\Yacaa.Service.Settings.csproj" />
+    <ProjectReference Include="..\Services\Yacaa.Services.DataAccess\Yacaa.Services.DataAccess.csproj" />
+    <ProjectReference Include="..\Yacaa.Shared\Yacaa.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +30,121 @@
   <ItemGroup>
     <None Remove="Resources\images\login_logo.png" />
     <Resource Include="Resources\images\login_logo.png" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-Black.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-Black.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-BlackItalic.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-BlackItalic.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-Bold.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-Bold.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-BoldItalic.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-BoldItalic.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-ExtraBold.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-ExtraBold.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-ExtraBoldItalic.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-ExtraBoldItalic.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-ExtraLight.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-ExtraLight.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-ExtraLightItalic.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-ExtraLightItalic.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-Italic.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-Italic.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-Light.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-Light.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-LightItalic.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-LightItalic.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-Medium.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-Medium.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-MediumItalic.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-MediumItalic.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-Regular.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-Regular.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-SemiBold.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-SemiBold.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-SemiBoldItalic.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-SemiBoldItalic.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-Thin.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-Thin.ttf" />
+    <None Remove="Resources\fonts\Montserrat\Montserrat-ThinItalic.ttf" />
+    <Resource Include="Resources\fonts\Montserrat\Montserrat-ThinItalic.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-Black.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-Black.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-BlackItalic.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-BlackItalic.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-Bold.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-Bold.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-BoldItalic.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-BoldItalic.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-ExtraBold.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-ExtraBold.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-ExtraBoldItalic.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-ExtraBoldItalic.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-ExtraLight.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-ExtraLight.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-ExtraLightItalic.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-ExtraLightItalic.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-Italic.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-Italic.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-Light.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-Light.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-LightItalic.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-LightItalic.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-Medium.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-Medium.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-MediumItalic.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-MediumItalic.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-Regular.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-Regular.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-SemiBold.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-SemiBold.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-SemiBoldItalic.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-SemiBoldItalic.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-Thin.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-Thin.ttf" />
+    <None Remove="Resources\fonts\FiraSans\FiraSans-ThinItalic.ttf" />
+    <Resource Include="Resources\fonts\FiraSans\FiraSans-ThinItalic.ttf" />
+    <None Remove="Resources\icon_yacaa.ico" />
+    <None Remove="Resources\images\login_logo_transparent.png" />
+    <Resource Include="Resources\images\login_logo_transparent.png" />
+    <None Remove="Resources\fonts\Ubuntu\Ubuntu-Bold.ttf" />
+    <Resource Include="Resources\fonts\Ubuntu\Ubuntu-Bold.ttf" />
+    <None Remove="Resources\fonts\Ubuntu\Ubuntu-BoldItalic.ttf" />
+    <Resource Include="Resources\fonts\Ubuntu\Ubuntu-BoldItalic.ttf" />
+    <None Remove="Resources\fonts\Ubuntu\Ubuntu-Italic.ttf" />
+    <Resource Include="Resources\fonts\Ubuntu\Ubuntu-Italic.ttf" />
+    <None Remove="Resources\fonts\Ubuntu\Ubuntu-Light.ttf" />
+    <Resource Include="Resources\fonts\Ubuntu\Ubuntu-Light.ttf" />
+    <None Remove="Resources\fonts\Ubuntu\Ubuntu-LightItalic.ttf" />
+    <Resource Include="Resources\fonts\Ubuntu\Ubuntu-LightItalic.ttf" />
+    <None Remove="Resources\fonts\Ubuntu\Ubuntu-Medium.ttf" />
+    <Resource Include="Resources\fonts\Ubuntu\Ubuntu-Medium.ttf" />
+    <None Remove="Resources\fonts\Ubuntu\Ubuntu-MediumItalic.ttf" />
+    <Resource Include="Resources\fonts\Ubuntu\Ubuntu-MediumItalic.ttf" />
+    <None Remove="Resources\fonts\Ubuntu\Ubuntu-Regular.ttf" />
+    <Resource Include="Resources\fonts\Ubuntu\Ubuntu-Regular.ttf" />
+    <None Remove="Resources\fonts\Squad\Squad - Regular.ttf" />
+    <Resource Include="Resources\fonts\Squad\Squad - Regular.ttf" />
+    <None Remove="Resources\fonts\YandexSans\YandexSansDisplay-Bold.ttf" />
+    <Resource Include="Resources\fonts\YandexSans\YandexSansDisplay-Bold.ttf" />
+    <None Remove="Resources\fonts\YandexSans\YandexSansDisplay-Light.ttf" />
+    <Resource Include="Resources\fonts\YandexSans\YandexSansDisplay-Light.ttf" />
+    <None Remove="Resources\fonts\YandexSans\YandexSansDisplay-Regular.ttf" />
+    <Resource Include="Resources\fonts\YandexSans\YandexSansDisplay-Regular.ttf" />
+    <None Remove="Resources\fonts\YandexSans\YandexSansDisplay-RegularItalic.ttf" />
+    <Resource Include="Resources\fonts\YandexSans\YandexSansDisplay-RegularItalic.ttf" />
+    <None Remove="Resources\fonts\YandexSans\YandexSansDisplay-Thin.ttf" />
+    <Resource Include="Resources\fonts\YandexSans\YandexSansDisplay-Thin.ttf" />
+    <None Remove="Resources\fonts\YandexSans\YandexSansText-Bold.ttf" />
+    <Resource Include="Resources\fonts\YandexSans\YandexSansText-Bold.ttf" />
+    <None Remove="Resources\fonts\YandexSans\YandexSansText-Light.ttf" />
+    <Resource Include="Resources\fonts\YandexSans\YandexSansText-Light.ttf" />
+    <None Remove="Resources\fonts\YandexSans\YandexSansText-Medium.ttf" />
+    <Resource Include="Resources\fonts\YandexSans\YandexSansText-Medium.ttf" />
+    <None Remove="Resources\fonts\YandexSans\YandexSansText-Regular.ttf" />
+    <Resource Include="Resources\fonts\YandexSans\YandexSansText-Regular.ttf" />
+    <None Remove="Resources\fonts\YandexSans\YandexSansText-RegularItalic.ttf" />
+    <Resource Include="Resources\fonts\YandexSans\YandexSansText-RegularItalic.ttf" />
+    <None Remove="Resources\fonts\YandexSans\YandexSansText-Thin.ttf" />
+    <Resource Include="Resources\fonts\YandexSans\YandexSansText-Thin.ttf" />
   </ItemGroup>
 
 </Project>

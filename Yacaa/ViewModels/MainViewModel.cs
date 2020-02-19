@@ -3,35 +3,49 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using MaterialDesignThemes.Wpf;
 using Stylet;
-using StyletIoC;
 using Yacaa.Events;
 using Yacaa.Interfaces.Factories;
 using Yacaa.Interfaces.ViewModels;
-using Yacaa.Models.MVVM;
-using Yacaa.Strings.Views;
+using Yacaa.Service.Settings;
 using Yacaa.ViewModels.Content;
 using Yacaa.Views;
+using MenuItem = Yacaa.Models.MenuItem;
 
 namespace Yacaa.ViewModels
 {
     public class MainViewModel : Conductor<IScreen>.Collection.OneActive, IHandle<SnackbarMessageEvent>
     {
+        #region Public properties
+
+        
+
+        #endregion
+        
         public string Title { get; set; } = "Yacaa";
-        public SnackbarMessageQueue SnackQueue { get; set; }
+        public SnackbarMessageQueue SnackQueue { get; set; } = new SnackbarMessageQueue();
         public bool IsMenuOpen { get; set; }
         public ObservableCollection<MenuItem> MenuItems { get; set; }
         public IContentViewModel SelectedItem { get; set; }
+        public int SelectedIndex { get; set; } = -1;
 
-        private readonly IEventAggregator _eventAggregator;
-        private IContentViewModelFactory _contentViewModelFactory;
+        private readonly IContentViewModelFactory _contentViewModelFactory;
+        private readonly SettingsService _settingsService;
 
-        public MainViewModel(IEventAggregator eventAggregator, IContentViewModelFactory contentViewModelFactory, HomeViewModel homeViewModel)
+        public MainViewModel(IEventAggregator eventAggregator,
+            IContentViewModelFactory contentViewModelFactory,
+            HomeViewModel homeViewModel,
+            SettingsService settingsService)
         {
-            _eventAggregator = eventAggregator;
             _contentViewModelFactory = contentViewModelFactory;
-            _eventAggregator.Subscribe(this);
+            _settingsService = settingsService;
+            eventAggregator.Subscribe(this);
             ActivateItem(homeViewModel);
             PopulateMenu();
+        }
+
+        protected override void OnInitialActivate()
+        {
+            _settingsService.Load();
         }
 
         public sealed override void ActivateItem(IScreen item)
@@ -47,9 +61,8 @@ namespace Yacaa.ViewModels
         public void Navigate()
         {
             IsMenuOpen = false;
-            Title = SelectedItem.DisplayName;
-            SelectedItem.ConductWith(this);
-            ActiveItem.RequestClose();
+            Title = SelectedItem.DisplayName + Strings.Views.Base.AppPrefix;
+            ActivateItem(SelectedItem);
         }
         
         #region WindowControls
@@ -86,21 +99,19 @@ namespace Yacaa.ViewModels
 
             MenuItems = new ObservableCollection<MenuItem>()
             {
-                new MenuItem(PartnerInteraction.Label, new ObservableCollection<IContentViewModel>(partnerInteraction)),
-                new MenuItem(Sales.Label, new ObservableCollection<IContentViewModel>(sales))
+                new MenuItem(Strings.Views.PartnerInteraction.Label, new ObservableCollection<IContentViewModel>(partnerInteraction)),
+                new MenuItem(Strings.Views.Sales.Label, new ObservableCollection<IContentViewModel>(sales))
             };
             
-            Items.AddRange(partnerInteraction);
-            Items.AddRange(sales);
+            //Items.AddRange(partnerInteraction);
+            //Items.AddRange(sales);
         }
         
         #endregion
 
-        public void Handle(SnackbarMessageEvent message)
+        public void Handle(SnackbarMessageEvent e)
         {
-            SnackQueue.Enqueue(message);
+            SnackQueue.Enqueue(e.Message);
         }
-        
-        
     }
 }

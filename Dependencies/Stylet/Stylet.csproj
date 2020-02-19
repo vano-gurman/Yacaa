@@ -2,7 +2,7 @@
   <PropertyGroup>
     <UseWPF>true</UseWPF>
     <RootNamespace>Module1</RootNamespace>
-    <TargetFrameworks>net48;netcoreapp3.1</TargetFrameworks>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="System.Drawing.Common" Version="4.7.0" />

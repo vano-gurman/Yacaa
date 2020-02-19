@@ -17,7 +17,8 @@
         Height="800" Width="1080">
         
         <styles:MaterialDesignWindow.HeaderContent>
-                <Grid>
+                
+            <Grid>
                         <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" HorizontalAlignment="Left" WindowChrome.IsHitTestVisibleInChrome="True" 
                                       x:Name="MenuToggleButton" IsChecked="{Binding IsMenuOpen, Mode=TwoWay}" />
                         <TextBlock Text="{Binding Title, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
@@ -61,9 +62,9 @@
                 <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
                         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}">
                                 <materialDesign:DrawerHost.LeftDrawerContent>
-                                        <DockPanel Width="260">
+                                        <DockPanel Width="260" x:Name="MenuDock">
                                                 <DockPanel.Resources>
-                                                        <DataTemplate x:Key="MenuTemplate" DataType="{x:Type models:MVVM.MenuItem}">
+                                                        <DataTemplate x:Key="MenuTemplate" DataType="{x:Type models:MenuItem}">
                                                                 <Expander Header="{Binding Label, Mode=OneWay}">
                                                                         <StackPanel Orientation="Vertical"
                                                                                     TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
@@ -73,6 +74,9 @@
                                                                                          SelectedItem="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}},
                                                                                          Path=DataContext.SelectedItem,
                                                                                          UpdateSourceTrigger=PropertyChanged}"
+                                                                                         SelectionMode="Single"
+                                                                                         SelectedIndex="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}},
+                                                                                         Path=DataContext.SelectedIndex, Mode=TwoWay}"
                                                                                          SelectionChanged="{s:Action Navigate}">
                                                                                 </ListBox>
                                                                         </StackPanel>
@@ -94,7 +98,7 @@
                         
                                         <ContentControl s:View.Model="{Binding ActiveItem}" Grid.Row="1"/>
 
-                                        <materialDesign:Snackbar MessageQueue="{Binding SnackQueue}" x:Name="MainSnackbar" Grid.Row="1" HorizontalAlignment="Center" Width="Auto"/>
+                                        <materialDesign:Snackbar MessageQueue="{Binding SnackQueue, Mode=TwoWay}" x:Name="MainSnackbar" Grid.Row="1" HorizontalAlignment="Center" Width="Auto"/>
                                 </Grid>
                         </materialDesign:DrawerHost>
                 </materialDesign:DialogHost>

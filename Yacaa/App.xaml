@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:stylet="https://github.com/canton7/Stylet"
              xmlns:root="clr-namespace:Yacaa"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+             xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,13 +15,32 @@
                 </stylet:ApplicationLoader>
                 
                 <!--  Merged dictionaries  -->
-                <materialDesign:CustomColorTheme BaseTheme="Light" PrimaryColor="SlateGray" SecondaryColor="DarkGray"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"/>
-                
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.BlueGrey.Primary.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Blue.Accent.xaml"/>
                 <ResourceDictionary Source="Styles/MaterialDesignWindow.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            
+            <!--  Fonts  -->
+            <FontFamily x:Key="Montserrat">pack://application:,,,/Resources/fonts/Montserrat/#Montserrat</FontFamily>
+            <FontFamily x:Key="FiraSans">pack://application:,,,/Resources/fonts/FiraSans/#FiraSans</FontFamily>
+            <FontFamily x:Key="Ubuntu">pack://application:,,,/Resources/fonts/Ubuntu/#Ubuntu</FontFamily>
+            <FontFamily x:Key="Squad">pack://application:,,,/Resources/fonts/Squad/#Squad</FontFamily>
+            <FontFamily x:Key="YandexSansDisplay">pack://application:,,,/Resources/fonts/YandexSans/#YandexSansDisplay</FontFamily>
+            <FontFamily x:Key="YandexSansText">pack://application:,,,/Resources/fonts/YandexSans/#YandexSansText</FontFamily>
+            
+            <!--  Brushes  -->
+            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource Primary200}" po:Freeze="True" />
+            <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource Primary200Foreground}" po:Freeze="True" />
+            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource Primary500}" po:Freeze="True" />
+            <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource Primary500Foreground}" po:Freeze="True" />
+            <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary700}" po:Freeze="True" />
+            <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource Primary700Foreground}" po:Freeze="True" />
+            <SolidColorBrush x:Key="SecondaryAccentBrush" Color="{StaticResource Accent400}" po:Freeze="True" />
+            <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource Accent400Foreground}" po:Freeze="True" />
+            
         </ResourceDictionary>
-        
     </Application.Resources>
 </Application>
 
