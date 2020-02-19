@@ -15,12 +15,12 @@ namespace Yacaa.Service.Settings.Service
         public bool IsSaved { get; set; }
         
         [JsonIgnore]
-        public string FullDirectoryPath => Path.Combine(
+        private string FullDirectoryPath => Path.Combine(
             _settingsConfiguration.StorageSpace.GetDirectoryPath(),
             _settingsConfiguration.SubDirectoryPath);
         
         [JsonIgnore]
-        public string FullFilePath => Path.Combine(
+        private string FullFilePath => Path.Combine(
             FullDirectoryPath,
             _settingsConfiguration.Filename);
 
@@ -35,7 +35,7 @@ namespace Yacaa.Service.Settings.Service
             };
         }
         
-        public virtual void CopyFrom(SettingsServiceBase reference)
+        public void CopyFrom(SettingsServiceBase reference)
         {
             if (reference == null)
                 throw new ArgumentNullException(nameof(reference));
@@ -46,7 +46,7 @@ namespace Yacaa.Service.Settings.Service
             IsSaved = reference.IsSaved;
         }
         
-        public virtual void Save()
+        public void Save()
         {
             if (!Directory.Exists(FullDirectoryPath))
                 Directory.CreateDirectory(FullDirectoryPath);
@@ -56,7 +56,7 @@ namespace Yacaa.Service.Settings.Service
             IsSaved = true;
         }
         
-        public virtual void Load()
+        public void Load()
         {
             if (!File.Exists(FullFilePath)) return;
             

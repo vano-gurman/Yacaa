@@ -48,6 +48,7 @@ namespace Yacaa.ViewModels.Dialogs
         public LoginDbDialogViewModel(SettingsService settingsService)
         {
             _settingsService = settingsService;
+            _settingsService.Load();
         }
         
         public void Save()

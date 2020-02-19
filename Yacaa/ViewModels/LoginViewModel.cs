@@ -66,6 +66,7 @@ namespace Yacaa.ViewModels
         public async void OpenDialog()
         {
             await _dialogManager.ShowDialogAsync(_loginDbDialogViewModelFactory());
+            Console.WriteLine("Sync testing");
             Refresh();
         }
     }
