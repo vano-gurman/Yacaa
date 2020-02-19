@@ -41,7 +41,13 @@ namespace Yacaa
             builder.Bind<SettingsConfiguration>().ToSelf().InSingletonScope();
             builder.Bind<SettingsService>().ToSelf().InSingletonScope();
             builder.Bind<DatabaseConfiguration>().ToSelf().InSingletonScope();
-            builder.Bind<AuthContext>().ToFactory(c => new AuthContext(Container.Get<DatabaseConfiguration>()));
+
+            /* Context block */
+            builder.Bind<AuthContext>().ToSelf();
+            builder.Bind<ContractsContext>().ToSelf();
+            /* End of Context block */
+
+            builder.Bind<DataService>().ToSelf().InSingletonScope();
         }
  
         protected override void Configure()

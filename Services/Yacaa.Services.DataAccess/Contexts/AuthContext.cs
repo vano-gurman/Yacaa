@@ -11,6 +11,7 @@ namespace Yacaa.Services.DataAccess.Contexts
 
         public AuthContext(DatabaseConfiguration databaseConfiguration) : base(databaseConfiguration)
         {
+            
         }
     }
 }

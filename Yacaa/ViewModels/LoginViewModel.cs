@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security;
 using Stylet;
+using Yacaa.Services.DataAccess;
 using Yacaa.Services.DataAccess.Configuration;
 using Yacaa.Services.DataAccess.Contexts;
 using Yacaa.Services.Settings;
@@ -20,7 +21,7 @@ namespace Yacaa.ViewModels
         private readonly DialogManager _dialogManager;
         private readonly Func<LoginDbDialogViewModel> _loginDbDialogViewModelFactory;
         private readonly DatabaseConfiguration _databaseConfiguration;
-        private readonly Func<AuthContext> _authContextFactory;
+        private readonly DataService _dataService;
 
         #endregion
         
@@ -52,7 +53,7 @@ namespace Yacaa.ViewModels
             DialogManager dialogManager,
             Func<LoginDbDialogViewModel> loginDbDialogViewModelFactory,
             DatabaseConfiguration databaseConfiguration,
-            Func<AuthContext> authContextFactory)
+            DataService dataService)
         {
             _mainViewModel = mainViewModel;
             _windowManager = windowManager;
@@ -61,7 +62,7 @@ namespace Yacaa.ViewModels
             _dialogManager = dialogManager;
             _loginDbDialogViewModelFactory = loginDbDialogViewModelFactory;
             _databaseConfiguration = databaseConfiguration;
-            _authContextFactory = authContextFactory;
+            _dataService = dataService;
         }
 
         protected override void OnViewLoaded()
@@ -70,10 +71,12 @@ namespace Yacaa.ViewModels
             _settingsService.Load();
             Refresh();
 
-            if (string.IsNullOrEmpty(_settingsService.DbSettings.ConnectionString)) return;
+            var cs = _settingsService.DbSettings.ConnectionString;
+            if (string.IsNullOrEmpty(cs)) return;
+            if (!_dataService.ValidateConnection(cs)) return; // ??
             
             _databaseConfiguration.ConnectionString = _settingsService.DbSettings.ConnectionString;
-            var context = _authContextFactory();
+            using var context = _dataService.AuthContextFactory();
             IsDatabaseConnectionOpen = context.CheckConnection(); // context.Database.CanConnect() ??
 
         }
