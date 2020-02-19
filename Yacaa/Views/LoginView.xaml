@@ -67,7 +67,7 @@
                                Style="{StaticResource MaterialDesignHeadline3TextBlock}"
                                FontSize="18" Text="Авторизация"/>
                     <TextBox  Grid.Row="1" Grid.Column="1"
-                              Text="{Binding UserName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  
+                              Text="{Binding Username,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  
                               materialDesign:HintAssist.Hint="Имя пользователя" MaxLength="15" 
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" 
                               VerticalAlignment="Center"/>
@@ -87,11 +87,8 @@
                                   HorizontalAlignment="Left" VerticalAlignment="Center"
                                   Style="{StaticResource MaterialDesignSwitchToggleButton}" 
                                   ToolTip="Запомнить" />
-                    <Button Grid.Column="2" Margin="20 0 0 0" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Content="Вход"
+                    <Button Grid.Column="2" Margin="20 0 0 0" Command="{s:Action Login}" Content="Вход"
                             VerticalAlignment="Center" FontSize="16" Style="{StaticResource MaterialDesignRaisedButton}">
-                        <Button.CommandParameter>
-                            <ContentControl s:View.Model="{Binding ActiveItem}"/>
-                        </Button.CommandParameter>
                     </Button>
                 </Grid>
                 

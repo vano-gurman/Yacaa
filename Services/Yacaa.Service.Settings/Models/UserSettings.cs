@@ -4,5 +4,6 @@
     {
         public string Username { get; set; }
         public string PasswordKey { get; set; }
+        public bool SaveCredentials { get; set; }
     }
 }

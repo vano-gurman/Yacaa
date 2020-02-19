@@ -3,6 +3,7 @@ using System.Security;
 using MaterialDesignThemes.Wpf;
 using Stylet;
 using Yacaa.Service.Settings;
+using Yacaa.Shared.Encryption;
 using Yacaa.ViewModels.Base;
 using Yacaa.ViewModels.Dialogs;
 
@@ -22,9 +23,21 @@ namespace Yacaa.ViewModels
         
         #region Public properties
         public string Title { get; set; } = string.Empty;
-        public string Username { get; set; }
-        public SecureString Password { get; set; }
-        public bool SaveCredentials { get; set; }
+        public string Username
+        {
+            get => _settingsService.UserSettings.Username;
+            set => _settingsService.UserSettings.Username = value;
+        }
+        public SecureString Password
+        {
+            get => _settingsService.UserSettings.PasswordKey.DecryptString();
+            set => _settingsService.UserSettings.PasswordKey = value.EncryptString();
+        }
+        public bool SaveCredentials
+        {
+            get => _settingsService.UserSettings.SaveCredentials;
+            set => _settingsService.UserSettings.SaveCredentials = value;
+        }
 
         #endregion
 
@@ -46,14 +59,20 @@ namespace Yacaa.ViewModels
         protected override void OnViewLoaded()
         {
             base.OnViewLoaded();
+            _settingsService.Load();
+            Refresh();
         }
 
         public void Login(object parameter)
         {
             if (ValidateUser())
             {
+                if (!SaveCredentials)
+                    Password = new SecureString();
+                _settingsService.Save();
+                
                 _windowManager.ShowWindow(_mainViewModel);
-                RequestClose();
+                this.CloseWindow();
             }
         }
 
