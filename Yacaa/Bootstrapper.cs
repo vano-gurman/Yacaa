@@ -22,31 +22,29 @@ namespace Yacaa
         {
             // This is called just after the application is started, but before the IoC container is set up.
             // Set up things like logging, etc
+#if DEBUG
             Stylet.Logging.LogManager.Enabled = true;
+#endif
+            
         }
  
         protected override void ConfigureIoC(IStyletIoCBuilder builder)
         {
-            var settingsConfig = new SettingsConfiguration(StorageSpace.UserRoaming, subDirectoryPath:Strings.Common.ApplicationName);
-            
             // Bind your own types. Concrete types are automatically self-bound.
             // builder.Bind<IMyInterface>().To<MyType>();
             builder.Bind(typeof(IModelValidator<>)).To(typeof(FluentModelValidator<>));
             builder.Bind(typeof(IValidator<>)).ToAllImplementations();
             builder.Bind<IContentViewModelFactory>().ToAbstractFactory();
-            //builder.Bind<ISettingsService>().ToInstance(new SettingsService(settingsConfig));
-            //builder.Bind<IDataService>().ToInstance(new DataService());
-            builder.Bind<SettingsService>().ToInstance(new SettingsService(settingsConfig));
-            builder.Bind<DataService>().ToSelf().InSingletonScope();
-        }
+            builder.Bind<SettingsConfiguration>().ToSelf().InSingletonScope();
+            builder.Bind<SettingsService>().ToSelf().InSingletonScope(); }
  
         protected override void Configure()
         {
             // This is called after Stylet has created the IoC container, so this.Container exists, but before the
             // Root ViewModel is launched.
             // Configure your services, etc, in here
-            var viewManager = this.Container.Get<ViewManager>();
-            var some = this.Container.GetAll(typeof(IContentViewModel));
+            Container.Get<SettingsService>().SettingsConfiguration.StorageSpace = StorageSpace.UserRoaming;
+            Container.Get<SettingsService>().SettingsConfiguration.SubDirectoryPath = Strings.Common.ApplicationName;
         }
  
         protected override void OnLaunch()

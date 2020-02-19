@@ -9,24 +9,26 @@ namespace Yacaa.Services.Settings.Service
 {
     public abstract partial class SettingsServiceBase
     {
-        private readonly SettingsConfiguration _settingsConfiguration;
-        
-        [JsonIgnore]
-        public bool IsSaved { get; set; }
-        
-        [JsonIgnore]
+        #region Private members
         private string FullDirectoryPath => Path.Combine(
-            _settingsConfiguration.StorageSpace.GetDirectoryPath(),
-            _settingsConfiguration.SubDirectoryPath);
+            SettingsConfiguration.StorageSpace.GetDirectoryPath(),
+            SettingsConfiguration.SubDirectoryPath);
         
-        [JsonIgnore]
         private string FullFilePath => Path.Combine(
             FullDirectoryPath,
-            _settingsConfiguration.Filename);
+            SettingsConfiguration.Filename);
+
+        #endregion
+        
+        [JsonIgnore]
+        public SettingsConfiguration SettingsConfiguration { get; }
+
+        [JsonIgnore]
+        public bool IsSaved { get; set; }
 
         protected SettingsServiceBase(SettingsConfiguration settingsConfiguration)
         {
-            _settingsConfiguration = settingsConfiguration;
+            SettingsConfiguration = settingsConfiguration;
             
             PropertyChanged += (sender, args) =>
             {
