@@ -8,6 +8,8 @@ using StyletIoC;
 using Yacaa.Interfaces.Factories;
 using Yacaa.Interfaces.ViewModels;
 using Yacaa.Services.DataAccess;
+using Yacaa.Services.DataAccess.Configuration;
+using Yacaa.Services.DataAccess.Contexts;
 using Yacaa.Services.Settings;
 using Yacaa.Services.Settings.Configuration;
 using Yacaa.Services.Settings.Enum;
@@ -32,11 +34,15 @@ namespace Yacaa
         {
             // Bind your own types. Concrete types are automatically self-bound.
             // builder.Bind<IMyInterface>().To<MyType>();
+
             builder.Bind(typeof(IModelValidator<>)).To(typeof(FluentModelValidator<>));
             builder.Bind(typeof(IValidator<>)).ToAllImplementations();
             builder.Bind<IContentViewModelFactory>().ToAbstractFactory();
             builder.Bind<SettingsConfiguration>().ToSelf().InSingletonScope();
-            builder.Bind<SettingsService>().ToSelf().InSingletonScope(); }
+            builder.Bind<SettingsService>().ToSelf().InSingletonScope();
+            builder.Bind<DatabaseConfiguration>().ToSelf().InSingletonScope();
+            builder.Bind<AuthContext>().ToFactory(c => new AuthContext(Container.Get<DatabaseConfiguration>()));
+        }
  
         protected override void Configure()
         {

@@ -32,7 +32,7 @@ namespace Yacaa.Services.Settings.Models
             const string delimiter = "; ";
             const string serverPrefix = "Server=";
             const string localdbString = "(localdb)";
-            const string usernamePrefix = "Username=";
+            const string usernamePrefix = "User Id=";
             const string passwordPrefix = "Password=";
             const string trustedConnectionString = "Trusted_Connection=True";
             const string databasePrefix = "Database=";

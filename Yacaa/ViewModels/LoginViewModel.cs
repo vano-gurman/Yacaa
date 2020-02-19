@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Security;
 using Stylet;
+using Yacaa.Services.DataAccess.Configuration;
+using Yacaa.Services.DataAccess.Contexts;
 using Yacaa.Services.Settings;
 using Yacaa.Shared.Encryption;
 using Yacaa.ViewModels.Base;
@@ -17,11 +19,14 @@ namespace Yacaa.ViewModels
         private readonly SettingsService _settingsService;
         private readonly DialogManager _dialogManager;
         private readonly Func<LoginDbDialogViewModel> _loginDbDialogViewModelFactory;
+        private readonly DatabaseConfiguration _databaseConfiguration;
+        private readonly Func<AuthContext> _authContextFactory;
 
         #endregion
         
         #region Public properties
         public string Title { get; set; } = string.Empty;
+        public bool IsDatabaseConnectionOpen { get; set; }
         public string Username
         {
             get => _settingsService.UserSettings.Username;
@@ -45,7 +50,9 @@ namespace Yacaa.ViewModels
             IModelValidator<LoginViewModel> validator,
             SettingsService settingsService,
             DialogManager dialogManager,
-            Func<LoginDbDialogViewModel> loginDbDialogViewModelFactory)
+            Func<LoginDbDialogViewModel> loginDbDialogViewModelFactory,
+            DatabaseConfiguration databaseConfiguration,
+            Func<AuthContext> authContextFactory)
         {
             _mainViewModel = mainViewModel;
             _windowManager = windowManager;
@@ -53,6 +60,8 @@ namespace Yacaa.ViewModels
             _settingsService = settingsService;
             _dialogManager = dialogManager;
             _loginDbDialogViewModelFactory = loginDbDialogViewModelFactory;
+            _databaseConfiguration = databaseConfiguration;
+            _authContextFactory = authContextFactory;
         }
 
         protected override void OnViewLoaded()
@@ -60,6 +69,13 @@ namespace Yacaa.ViewModels
             base.OnViewLoaded();
             _settingsService.Load();
             Refresh();
+
+            if (string.IsNullOrEmpty(_settingsService.DbSettings.ConnectionString)) return;
+            
+            _databaseConfiguration.ConnectionString = _settingsService.DbSettings.ConnectionString;
+            var context = _authContextFactory();
+            IsDatabaseConnectionOpen = context.CheckConnection(); // context.Database.CanConnect() ??
+
         }
 
         public void Login(object parameter)
