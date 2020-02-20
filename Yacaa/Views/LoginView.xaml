@@ -21,10 +21,9 @@
     <Window.Resources>
         <ImageSource x:Key="LoginLogoTransparent">pack://application:,,,/Resources/images/login_logo_transparent.png</ImageSource>
         <converters:BoolToColorConverter x:Key="ColorConverter"/>
+        <s:BoolToVisibilityConverter x:Key="VisibilityConverter" TrueVisibility="Visible" FalseVisibility="Hidden"/>
     </Window.Resources>
-    <b:Interaction.Behaviors>
-        <styles:DragWindowBehavior/>
-    </b:Interaction.Behaviors>
+    
    
     <styles:MaterialDesignWindow.HeaderContent>
         <materialDesign:PopupBox WindowChrome.IsHitTestVisibleInChrome="True"
@@ -40,59 +39,41 @@
     </styles:MaterialDesignWindow.HeaderContent>
    
     <Window.Content>
-        <materialDesign:DialogHost x:Name="LoginDialogHost" Identifier="LoginDialog">
-            <Grid>
+        <materialDesign:DialogHost x:Name="LoginDialogHost" Identifier="LoginDialog" SnackbarMessageQueue="{Binding ElementName=LoginSnackbar, Path=MessageQueue}">
+            <Grid IsEnabled="{Binding IsDatabaseValidated}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="80"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Image Margin="20 20 20 0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                <Image Margin="20 0 20 0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
                        Source="{StaticResource LoginLogoTransparent}" RenderOptions.BitmapScalingMode="HighQuality"/>
-                <Grid Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="45"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="45"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="1"
-                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch" Margin="45 10 45 0">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
                                Style="{StaticResource MaterialDesignHeadline3TextBlock}"
                                FontSize="18" Text="Авторизация"/>
-                    <TextBox  Grid.Row="1" Grid.Column="1"
-                              Text="{Binding Username,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  
+                    <TextBox Text="{Binding Username,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  
                               materialDesign:HintAssist.Hint="Имя пользователя" MaxLength="15" 
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" 
                               VerticalAlignment="Center"/>
-                    <PasswordBox Grid.Row="2" Grid.Column="1"
+                    <PasswordBox Margin="0 5 0 5"
                                  materialDesign:HintAssist.Hint="Пароль" Foreground="Black"  FontSize="15" PasswordChar="●" 
                                  xaml:PasswordBoxHelper.SecurePassword="{Binding Password, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
-                </Grid>
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="45"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="45"/>
-                    </Grid.ColumnDefinitions>
-                    <ToggleButton Grid.Column="1" IsChecked="{Binding SaveCredentials}"
-                                  HorizontalAlignment="Left" VerticalAlignment="Center"
-                                  Style="{StaticResource MaterialDesignSwitchToggleButton}" 
-                                  ToolTip="Запомнить" />
-                    <Button Grid.Column="2" Margin="20 0 0 0" Command="{s:Action Login}" Content="Вход"
-                            VerticalAlignment="Center" FontSize="16" Style="{StaticResource MaterialDesignRaisedButton}">
-                    </Button>
-                </Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0 20 0 0">
+                        <ToggleButton IsChecked="{Binding SaveCredentials}" Margin="0 0 20 0"
+                                      HorizontalAlignment="Left" VerticalAlignment="Center"
+                                      Style="{StaticResource MaterialDesignSwitchToggleButton}" 
+                                      ToolTip="Запомнить" />
+                        <Button Margin="20 0 0 0" Command="{s:Action Login}" Content="Вход"
+                                VerticalAlignment="Center" Width="220" FontSize="16">
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
                 
-                <materialDesign:Card Grid.Row="4" HorizontalAlignment="Stretch" Height="30">
+                <materialDesign:Snackbar Grid.Row="1" x:Name="LoginSnackbar" MessageQueue="{Binding SnackQueue, Mode=TwoWay}"/>
+                
+                <materialDesign:Card Grid.Row="2" HorizontalAlignment="Stretch" Height="30">
                     <StackPanel Orientation="Horizontal" Margin="45 0 45 0" HorizontalAlignment="Center">
                         <materialDesign:PackIcon Kind="DatabaseRemove" Foreground="Firebrick" VerticalAlignment="Center" FontSize="20"/>
                         <TextBlock Margin="5 0 0 0" FontSize="14" Foreground="Firebrick"

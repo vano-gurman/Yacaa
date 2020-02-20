@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Security;
+using MaterialDesignThemes.Wpf;
 using Stylet;
 using Yacaa.Services.DataAccess;
 using Yacaa.Services.DataAccess.Configuration;
-using Yacaa.Services.DataAccess.Contexts;
 using Yacaa.Services.Settings;
 using Yacaa.Shared.Encryption;
 using Yacaa.ViewModels.Base;
@@ -13,6 +13,8 @@ namespace Yacaa.ViewModels
 {
     public class LoginViewModel : Screen
     {
+        public ISnackbarMessageQueue SnackQueue { get; set; }
+
         #region Private members
         private readonly MainViewModel _mainViewModel;
         private readonly IWindowManager _windowManager;
@@ -20,7 +22,6 @@ namespace Yacaa.ViewModels
         private readonly SettingsService _settingsService;
         private readonly DialogManager _dialogManager;
         private readonly Func<LoginDbDialogViewModel> _loginDbDialogViewModelFactory;
-        private readonly DatabaseConfiguration _databaseConfiguration;
         private readonly DataService _dataService;
 
         #endregion
@@ -43,42 +44,35 @@ namespace Yacaa.ViewModels
             get => _settingsService.UserSettings.SaveCredentials;
             set => _settingsService.UserSettings.SaveCredentials = value;
         }
+        public bool IsDatabaseValidated => _dataService.IsConnectionValidated;
+        public bool CanLogin => IsDatabaseValidated;
 
         #endregion
 
-        public LoginViewModel(MainViewModel mainViewModel,
+        public LoginViewModel(
+            MainViewModel mainViewModel,
+            ISnackbarMessageQueue snackQueue,
             IWindowManager windowManager,
             IModelValidator<LoginViewModel> validator,
             SettingsService settingsService,
             DialogManager dialogManager,
             Func<LoginDbDialogViewModel> loginDbDialogViewModelFactory,
-            DatabaseConfiguration databaseConfiguration,
             DataService dataService)
         {
+            SnackQueue = snackQueue;
             _mainViewModel = mainViewModel;
             _windowManager = windowManager;
             _validator = validator;
             _settingsService = settingsService;
             _dialogManager = dialogManager;
             _loginDbDialogViewModelFactory = loginDbDialogViewModelFactory;
-            _databaseConfiguration = databaseConfiguration;
             _dataService = dataService;
         }
 
         protected override void OnViewLoaded()
         {
             base.OnViewLoaded();
-            _settingsService.Load();
-            Refresh();
-
-            var cs = _settingsService.DbSettings.ConnectionString;
-            if (string.IsNullOrEmpty(cs)) return;
-            if (!_dataService.ValidateConnection(cs)) return; // ??
-            
-            _databaseConfiguration.ConnectionString = _settingsService.DbSettings.ConnectionString;
-            using var context = _dataService.AuthContextFactory();
-            IsDatabaseConnectionOpen = context.CheckConnection(); // context.Database.CanConnect() ??
-
+            SnackQueue.Enqueue("Hello World");
         }
 
         public void Login(object parameter)

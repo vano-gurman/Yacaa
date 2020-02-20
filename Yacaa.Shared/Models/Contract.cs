@@ -8,6 +8,8 @@ namespace Yacaa.Shared.Models
     {
         public int Id { get; set; }
         [Required]
+        public Company Company { get; set; }
+        [Required]
         [MaxLength(50)]
         public string Number { get; set; }
         [Required]

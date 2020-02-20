@@ -7,15 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yacaa", "Yacaa\Yacaa.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{521C246B-5330-41B7-88D9-15BEBD660B27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stylet", "Dependencies\Stylet\Stylet.csproj", "{C3BA9559-9BC3-4769-B86C-CD9E813F4581}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stylet", "Dependencies\Stylet\Stylet.csproj", "{C3BA9559-9BC3-4769-B86C-CD9E813F4581}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{D429D8C2-DCF7-4CE2-8A7E-72EA30995055}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa.Shared", "Yacaa.Shared\Yacaa.Shared.csproj", "{CD8A61BF-20C8-4899-93CF-197EE25C968B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yacaa.Shared", "Yacaa.Shared\Yacaa.Shared.csproj", "{CD8A61BF-20C8-4899-93CF-197EE25C968B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa.Services.DataAccess", "Services\Yacaa.Services.DataAccess\Yacaa.Services.DataAccess.csproj", "{970ACB80-3614-4EDB-9A3B-77E46665A16C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yacaa.Services.DataAccess", "Services\Yacaa.Services.DataAccess\Yacaa.Services.DataAccess.csproj", "{970ACB80-3614-4EDB-9A3B-77E46665A16C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yacaa.Services.Settings", "Services\Yacaa.Services.Settings\Yacaa.Services.Settings.csproj", "{17725517-6A55-4FAE-BF6B-54CDB2EEFF11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yacaa.Services.Settings", "Services\Yacaa.Services.Settings\Yacaa.Services.Settings.csproj", "{17725517-6A55-4FAE-BF6B-54CDB2EEFF11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

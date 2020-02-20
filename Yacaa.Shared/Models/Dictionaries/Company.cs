@@ -2,11 +2,11 @@
 
 namespace Yacaa.Shared.Models.Dictionaries
 {
-    public class Currency
+    public class Company
     {
         public int Id { get; set; }
         [Required]
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Name { get; set; }
     }
 }

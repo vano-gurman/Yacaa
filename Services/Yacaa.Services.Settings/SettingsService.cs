@@ -9,7 +9,8 @@ namespace Yacaa.Services.Settings
         public DbSettings DbSettings { get; set; } = new DbSettings();
         public UserSettings UserSettings { get; set; } = new UserSettings();
         public UserLayout UserLayout { get; set; } = new UserLayout();
-        public SettingsService(SettingsConfiguration settingsConfiguration) : base(settingsConfiguration)
+        public SettingsService(
+            SettingsConfiguration settingsConfiguration) : base(settingsConfiguration)
         {
         }
     }

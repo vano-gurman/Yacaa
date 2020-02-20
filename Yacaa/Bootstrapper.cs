@@ -2,14 +2,14 @@
 using System.Windows;
 using System.Windows.Threading;
 using FluentValidation;
+using MaterialDesignThemes.Wpf;
 using NLog;
 using Stylet;
 using StyletIoC;
 using Yacaa.Interfaces.Factories;
-using Yacaa.Interfaces.ViewModels;
 using Yacaa.Services.DataAccess;
 using Yacaa.Services.DataAccess.Configuration;
-using Yacaa.Services.DataAccess.Contexts;
+using Yacaa.Services.DataAccess.Context;
 using Yacaa.Services.Settings;
 using Yacaa.Services.Settings.Configuration;
 using Yacaa.Services.Settings.Enum;
@@ -38,15 +38,13 @@ namespace Yacaa
             builder.Bind(typeof(IModelValidator<>)).To(typeof(FluentModelValidator<>));
             builder.Bind(typeof(IValidator<>)).ToAllImplementations();
             builder.Bind<IContentViewModelFactory>().ToAbstractFactory();
+            builder.Bind<ISnackbarMessageQueue>().To<SnackbarMessageQueue>().InSingletonScope();
+            
             builder.Bind<SettingsConfiguration>().ToSelf().InSingletonScope();
             builder.Bind<SettingsService>().ToSelf().InSingletonScope();
+            
             builder.Bind<DatabaseConfiguration>().ToSelf().InSingletonScope();
-
-            /* Context block */
-            builder.Bind<AuthContext>().ToSelf();
-            builder.Bind<ContractsContext>().ToSelf();
-            /* End of Context block */
-
+            builder.Bind<DataContext>().ToSelf();
             builder.Bind<DataService>().ToSelf().InSingletonScope();
         }
  
@@ -55,8 +53,16 @@ namespace Yacaa
             // This is called after Stylet has created the IoC container, so this.Container exists, but before the
             // Root ViewModel is launched.
             // Configure your services, etc, in here
-            Container.Get<SettingsService>().SettingsConfiguration.StorageSpace = StorageSpace.UserRoaming;
-            Container.Get<SettingsService>().SettingsConfiguration.SubDirectoryPath = Strings.Common.ApplicationName;
+            
+            var settingsConfig = Container.Get<SettingsConfiguration>();
+            settingsConfig.StorageSpace = StorageSpace.UserRoaming;
+            settingsConfig.SubDirectoryPath = Strings.Common.ApplicationName;
+
+            var settingsService = Container.Get<SettingsService>();
+            settingsService.Load();
+
+            Container.Get<DataService>().ValidateAndSetConnectionString(settingsService.DbSettings.ConnectionString);
+
         }
  
         protected override void OnLaunch()

@@ -1,34 +1,19 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
-using Yacaa.Services.DataAccess.Contexts;
+using Yacaa.Services.DataAccess.Configuration;
+using Yacaa.Services.DataAccess.Context;
 
 namespace Yacaa.Services.DataAccess
 {
     public class DataService
     {
-        public Func<AuthContext> AuthContextFactory { get; }
-        public Func<ContractsContext> ContractsContextFactory { get; }
+        public Func<DataContext> DataContextFactory { get; }
+        public DatabaseConfiguration DatabaseConfiguration { get; }
+        public bool IsConnectionValidated { get; set; }
 
-        public DataService(
-            Func<AuthContext> authContextFactory,
-            Func<ContractsContext> contractsContextFactory)
+        public DataService(Func<DataContext> dataContextFactory, DatabaseConfiguration databaseConfiguration)
         {
-            AuthContextFactory = authContextFactory;
-            ContractsContextFactory = contractsContextFactory;
-        }
-
-        public bool ValidateConnection(string connectionString)
-        {
-            try
-            {
-                using var connection = new SqlConnection(connectionString: connectionString);
-                connection.Open();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            DataContextFactory = dataContextFactory;
+            DatabaseConfiguration = databaseConfiguration;
         }
     }
 }
