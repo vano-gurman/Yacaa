@@ -13,6 +13,15 @@ namespace Yacaa.Services.DataAccess.Context
 
         #endregion
 
+        #region Constructors
+ 
+        public DataContext(DatabaseConfiguration databaseConfiguration)
+        {
+            _databaseConfiguration = databaseConfiguration;
+        }
+
+        #endregion
+
         #region Public properties
         /* Authentication */
         public DbSet<User> Users { get; set; }
@@ -29,14 +38,9 @@ namespace Yacaa.Services.DataAccess.Context
         
         #endregion
         
-        public DataContext(DatabaseConfiguration databaseConfiguration)
-        {
-            _databaseConfiguration = databaseConfiguration;
-        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
+        {            
             optionsBuilder.UseSqlServer(_databaseConfiguration.ConnectionString);
         }
     }
