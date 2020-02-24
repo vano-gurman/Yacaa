@@ -44,7 +44,7 @@ namespace Yacaa.Services.DataAccess.Context
         {            
             optionsBuilder.UseSqlServer(_databaseConfiguration.ConnectionString);
         }
-
+        // test comment
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
