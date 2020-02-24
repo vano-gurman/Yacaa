@@ -11,7 +11,7 @@ namespace Yacaa.Xaml.Converters
         {
             return value != null && (bool)value ? new SolidColorBrush(Colors.Firebrick) : new SolidColorBrush(Colors.ForestGreen);
         }
-
+        // test comment 2
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
