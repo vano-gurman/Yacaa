@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Yacaa.Services.DataAccess.Configuration;
 using Yacaa.Shared.Models;
 using Yacaa.Shared.Models.Auth;
@@ -42,6 +43,12 @@ namespace Yacaa.Services.DataAccess.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {            
             optionsBuilder.UseSqlServer(_databaseConfiguration.ConnectionString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Username);               
         }
     }
 }

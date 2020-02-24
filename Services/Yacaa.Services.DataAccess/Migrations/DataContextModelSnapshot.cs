@@ -63,6 +63,8 @@ namespace Yacaa.Services.DataAccess.Migrations
 
                     b.HasIndex("RoleId");
 
+                    b.HasIndex("Username");
+
                     b.ToTable("Users");
                 });
 

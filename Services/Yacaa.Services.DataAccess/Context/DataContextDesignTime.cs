@@ -14,7 +14,8 @@ namespace Yacaa.Services.DataAccess.Context
         {
             _databaseConfiguration = new DatabaseConfiguration
             {
-                ConnectionString = "Server=(localdb)\\MSSQLLocalDB;Database=testDB1;Trusted_Connection=True;"
+                //ConnectionString = "Server=(localdb)\\MSSQLLocalDB;Database=testDB1;Trusted_Connection=True"
+                ConnectionString = "Data Source=192.168.28.2;Initial Catalog=testDB1;User ID=sa;Password=imagine2002"
             };            
                 
             var optionsBuilder = new DbContextOptionsBuilder<DataContext>();

@@ -138,6 +138,11 @@ namespace Yacaa.Services.DataAccess.Migrations
                 name: "IX_Users_RoleId",
                 table: "Users",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Username",
+                table: "Users",
+                column: "Username");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -10,7 +10,7 @@ using Yacaa.Services.DataAccess.Context;
 namespace Yacaa.Services.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200223153056_init")]
+    [Migration("20200224134540_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,6 +64,8 @@ namespace Yacaa.Services.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("RoleId");
+
+                    b.HasIndex("Username");
 
                     b.ToTable("Users");
                 });
