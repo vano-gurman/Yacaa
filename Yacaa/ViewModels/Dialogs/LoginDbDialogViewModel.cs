@@ -1,4 +1,5 @@
 ﻿using System.Security;
+using Yacaa.Services.DataAccess;
 using Yacaa.Services.Settings;
 using Yacaa.Shared.Encryption;
 using Yacaa.ViewModels.Base;
@@ -8,6 +9,7 @@ namespace Yacaa.ViewModels.Dialogs
     public class LoginDbDialogViewModel : DialogScreen
     {
         private readonly SettingsService _settingsService;
+        private readonly DataService _dataService;
 
         #region Public properties
 
@@ -45,15 +47,18 @@ namespace Yacaa.ViewModels.Dialogs
         #endregion
         
         
-        public LoginDbDialogViewModel(SettingsService settingsService)
+        public LoginDbDialogViewModel(SettingsService settingsService, DataService dataService)
         {
             _settingsService = settingsService;
             _settingsService.Load();
+
+            _dataService = dataService;
         }
         
         public void Save()
         {
             _settingsService.Save();
+            _dataService.ValidateAndSetConnectionString(_settingsService.DbSettings.ConnectionString);
             Close(true);
         }
 

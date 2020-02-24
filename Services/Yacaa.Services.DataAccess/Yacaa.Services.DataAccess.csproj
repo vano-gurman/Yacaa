@@ -5,6 +5,35 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Migrations\20200223153056_init.cs" />
+      <Compile Remove="Migrations\20200223153056_init.Designer.cs" />
+      <Compile Remove="Migrations\20200224110204_init.cs" />
+      <Compile Remove="Migrations\20200224110204_init.Designer.cs" />
+      <Compile Remove="Migrations\20200224111405_init.cs" />
+      <Compile Remove="Migrations\20200224111405_init.Designer.cs" />
+      <Compile Remove="Migrations\20200224122218_users_modif.cs" />
+      <Compile Remove="Migrations\20200224122218_users_modif.Designer.cs" />
+      <Compile Remove="Migrations\20200224124917_users_modif.cs" />
+      <Compile Remove="Migrations\20200224124917_users_modif.Designer.cs" />
+      <Compile Remove="Migrations\20200224125206_users_modif.cs" />
+      <Compile Remove="Migrations\20200224125206_users_modif.Designer.cs" />
+      <Compile Remove="Migrations\20200224130356_users_modif.cs" />
+      <Compile Remove="Migrations\20200224130356_users_modif.Designer.cs" />
+      <Compile Remove="Migrations\20200224131423_init.cs" />
+      <Compile Remove="Migrations\20200224131423_init.Designer.cs" />
+      <Compile Remove="Migrations\20200224131837_init.cs" />
+      <Compile Remove="Migrations\20200224131837_init.Designer.cs" />
+      <Compile Remove="Migrations\20200224132605_init.cs" />
+      <Compile Remove="Migrations\20200224132605_init.Designer.cs" />
+      <Compile Remove="Migrations\20200224133522_init.cs" />
+      <Compile Remove="Migrations\20200224133522_init.Designer.cs" />
+      <Compile Remove="Migrations\20200224134203_init.cs" />
+      <Compile Remove="Migrations\20200224134203_init.Designer.cs" />
+      <Compile Remove="Migrations\20200224134406_init.cs" />
+      <Compile Remove="Migrations\20200224134406_init.Designer.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
     </ItemGroup>

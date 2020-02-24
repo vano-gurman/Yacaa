@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security;
 using MaterialDesignThemes.Wpf;
 using Stylet;
 using Yacaa.Services.DataAccess;
 using Yacaa.Services.DataAccess.Configuration;
+using Yacaa.Services.DataAccess.Context;
 using Yacaa.Services.Settings;
 using Yacaa.Shared.Encryption;
+using Yacaa.Shared.Models.Auth;
 using Yacaa.ViewModels.Base;
 using Yacaa.ViewModels.Dialogs;
 
@@ -90,7 +94,20 @@ namespace Yacaa.ViewModels
 
         public bool ValidateUser()
         {
-            return true;
+            DataContext dataContext = new DataContext(this._dataService.DatabaseConfiguration);
+            
+            User u = dataContext.Users.First(u => u.Username == this.Username);
+            if (u is null) { return false; }
+            string s = this.Password.ToUnsecuredString();
+            string s2 = u.PasswordKey.DecryptString().ToUnsecuredString();
+            if (this.Password.ToUnsecuredString() == u.PasswordKey.DecryptString().ToUnsecuredString())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void CloseWindow() => RequestClose();

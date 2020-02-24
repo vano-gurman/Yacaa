@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Yacaa.Services.DataAccess.Configuration;
 using Yacaa.Shared.Models;
 using Yacaa.Shared.Models.Auth;
@@ -10,6 +11,15 @@ namespace Yacaa.Services.DataAccess.Context
     {
         #region Private members
         private readonly DatabaseConfiguration _databaseConfiguration;
+
+        #endregion
+
+        #region Constructors
+ 
+        public DataContext(DatabaseConfiguration databaseConfiguration)
+        {
+            _databaseConfiguration = databaseConfiguration;
+        }
 
         #endregion
 
@@ -29,15 +39,16 @@ namespace Yacaa.Services.DataAccess.Context
         
         #endregion
         
-        public DataContext(DatabaseConfiguration databaseConfiguration)
-        {
-            _databaseConfiguration = databaseConfiguration;
-        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
+        {            
             optionsBuilder.UseSqlServer(_databaseConfiguration.ConnectionString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Username);               
         }
     }
 }
